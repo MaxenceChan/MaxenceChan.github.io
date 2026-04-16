@@ -644,7 +644,8 @@ async function sendContact() {
   function resize() {
     W = c.parentElement.offsetWidth; H = c.parentElement.offsetHeight;
     c.width = W; c.height = H; dots = [];
-    var n = Math.floor(W * H / 7000);
+    var density = window.innerWidth < 768 ? 6000 : 3500;
+    var n = Math.floor(W * H / density);
     for (var i = 0; i < n; i++) {
       dots.push({ x: Math.random()*W, y: Math.random()*H, vx: (Math.random()-.5)*.25, vy: (Math.random()-.5)*.25, r: Math.random()*1.4+.3, a: Math.random()*.7+.1 });
     }
