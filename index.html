@@ -345,6 +345,21 @@
   }
 
 }
+/* Mode normal (home) */
+#particles.full {
+  opacity: 1;
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+
+/* Mode "bords seulement" */
+#particles.edges {
+  opacity: 0.6;
+
+  /* 🔥 masque qui cache le centre */
+  mask-image: radial-gradient(circle at center, transparent 35%, black 75%);
+  -webkit-mask-image: radial-gradient(circle at center, transparent 35%, black 75%);
+}
 </style>
 </head>
 <body>
@@ -527,11 +542,26 @@ function show(id, el) {
     var el2 = document.getElementById('sec-' + s);
     if (el2) { el2.style.display = 'none'; el2.classList.remove('visible'); }
   });
+
   var target = document.getElementById('sec-' + id);
   if (target) { target.style.display = 'block'; target.classList.add('visible'); }
+
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   if (el) el.classList.add('active');
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // 🔥 GESTION PARTICULES
+  const particles = document.getElementById("particles");
+
+  if (id === "home") {
+    particles.classList.remove("edges");
+    particles.classList.add("full");
+  } else {
+    particles.classList.remove("full");
+    particles.classList.add("edges");
+  }
+
   if (id === 'projects' && !ghLoaded) loadGitHub();
 }
 
