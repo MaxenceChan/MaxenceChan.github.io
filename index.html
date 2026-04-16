@@ -212,7 +212,9 @@
   }
 
   /* ─── ABOUT ──────────────────────────────────────── */
-  .about-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; }
+  .about-grid .objective-card { grid-column: 1 / -1; }
+  .about-grid .skills-wrap { grid-column: 1 / -1; }
 
   .objective-card {
     grid-column: 1 / -1;
@@ -533,21 +535,21 @@
     </div>
 
     <div>
-      <div style="font-size:11px;font-family:var(--font-m);letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;">Expériences & Formation</div>
+      <div style="font-size:11px;font-family:var(--font-m);letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;">Expériences professionnelles</div>
       <div class="timeline">
 
         <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-year">2022 – 2025</div>
-          <div class="tl-title">BUT Sciences des Données – Université Lyon 2</div>
-          <div class="tl-sub">R, Python, SQL, Power BI, ETL, Excel</div>
+          <div class="tl-dot green"></div>
+          <div class="tl-year">Sept. 2026 – Sept. 2027 ●</div>
+          <div class="tl-title">Alternance Chargé d'Études Rentabilité et Résultats – SOGECAP (Société Générale)</div>
+          <div class="tl-sub">Pilotage Résultats & Rentabilités · provisions garantie plancher · états réglementaires · Paris La Défense</div>
         </div>
 
         <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-year">Avr. – Mai 2023</div>
-          <div class="tl-title">Stagiaire Data Analyst – Département du Rhône</div>
-          <div class="tl-sub">Nettoyage de données énergétiques · dashboards Power BI sur 70 sites</div>
+          <div class="tl-dot" style="background:var(--accent3);box-shadow:0 0 8px rgba(239,159,39,0.5);"></div>
+          <div class="tl-year">Juin – Sept. 2026</div>
+          <div class="tl-title">Stage Chargé d'Études Rentabilité et Résultats – SOGECAP (Société Générale)</div>
+          <div class="tl-sub">Analyse de portefeuilles · comités ALM · arrêtés comptables trimestriels · Paris La Défense</div>
         </div>
 
         <div class="tl-item">
@@ -559,31 +561,38 @@
 
         <div class="tl-item">
           <div class="tl-dot"></div>
-          <div class="tl-year">2025 – 2027</div>
-          <div class="tl-title">Master Économétrie et Statistiques – ISFA Lyon</div>
-          <div class="tl-sub">R, Stata, SAS, Python, VBA · actuariat, modélisation financière, ALM</div>
-        </div>
-
-        <div class="tl-item">
-          <div class="tl-dot" style="background:var(--accent3);box-shadow:0 0 8px rgba(239,159,39,0.5);"></div>
-          <div class="tl-year">Juin – Sept. 2026</div>
-          <div class="tl-title">Stage Chargé d'Études Rentabilité et Résultats – SOGECAP (Société Générale)</div>
-          <div class="tl-sub">Analyse de portefeuilles · comités ALM · arrêtés comptables trimestriels · Paris La Défense</div>
-        </div>
-
-        <div class="tl-item">
-          <div class="tl-dot green"></div>
-          <div class="tl-year">Sept. 2026 – Sept. 2027 ●</div>
-          <div class="tl-title">Alternance Chargée d'Études Rentabilité et Résultats – SOGECAP (Société Générale)</div>
-          <div class="tl-sub">Pilotage Résultats & Rentabilités · provisions garantie plancher · états réglementaires · Paris La Défense</div>
+          <div class="tl-year">Avr. – Mai 2023</div>
+          <div class="tl-title">Stagiaire Data Analyst – Département du Rhône</div>
+          <div class="tl-sub">Nettoyage de données énergétiques · dashboards Power BI sur 70 sites</div>
         </div>
 
       </div>
     </div>
 
     <div>
+      <div style="font-size:11px;font-family:var(--font-m);letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;">Formation</div>
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2025 – 2027</div>
+          <div class="tl-title">Master Économétrie et Statistiques – ISFA Lyon</div>
+          <div class="tl-sub">R, Stata, SAS, Python, VBA · actuariat, modélisation financière, ALM</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2022 – 2025</div>
+          <div class="tl-title">BUT Sciences des Données – Université Lyon 2</div>
+          <div class="tl-sub">R, Python, SQL, Power BI, ETL, Excel</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="skills-wrap">
       <div style="font-size:11px;font-family:var(--font-m);letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;">Compétences</div>
-      <div class="skills-grid">
+      <div class="skills-grid" style="grid-template-columns: repeat(4, 1fr);">
         <div class="skill-card">
           <div class="skill-cat">Data Science & ML</div>
           <div class="tags">
