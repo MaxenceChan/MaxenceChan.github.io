@@ -190,56 +190,74 @@
   height: 100%;
   object-fit: cover;
 }
-@media (max-width: 768px) {
-
   /* NAV */
+  @media (max-width: 768px) {
+
   nav {
     padding: 0.8rem 1rem;
+    justify-content: center;
   }
 
   .nav-links {
-    gap: 1rem;
-    justify-content: center;
+    gap: 1.2rem;
     width: 100%;
+    justify-content: space-between;
   }
 
+  .nav-links a {
+    font-size: 12px;
+  }
+
+}
+
   /* HERO */
+  @media (max-width: 768px) {
+
   .hero {
-    padding: 6rem 1rem 2rem;
+    padding: 5.5rem 1.2rem 2rem;
+    min-height: auto;
   }
 
   .hero-content {
     flex-direction: column;
     text-align: center;
-    gap: 1.5rem;
+    gap: 2rem;
   }
 
   .hero-left {
+    display: flex;
+    flex-direction: column;
     align-items: center;
   }
 
   .hero h1 {
     font-size: 2rem;
+    line-height: 1.2;
   }
 
-  .hero-tagline,
+  .hero-tagline {
+    font-size: 14px;
+  }
+
   .hero-bio {
-    max-width: 100%;
-    padding-left: 0;
+    font-size: 13px;
     border-left: none;
+    padding-left: 0;
   }
 
-  /* BOUTONS */
   .hero-cta {
     justify-content: center;
   }
 
-  /* SOCIALS */
   .hero-socials {
     justify-content: center;
   }
 
+}
+
   /* AVATAR */
+  @media (max-width: 768px) {
+
   .avatar-wrap {
     width: 120px;
     height: 120px;
@@ -260,7 +278,11 @@
     height: 80px;
   }
 
+}
+
   /* STATS */
+  @media (max-width: 768px) {
+
   .stats-bar {
     grid-template-columns: 1fr 1fr;
   }
@@ -270,17 +292,34 @@
     text-align: center;
   }
 
-  /* SECTIONS */
-  section {
-    padding: 2.5rem 1rem;
+  .stat-num {
+    font-size: 1.5rem;
   }
 
+}
+  /* SECTIONS */
+  @media (max-width: 768px) {
+
+  section {
+    padding: 2.5rem 1.2rem;
+  }
+
+  .sec-title {
+    font-size: 1.6rem;
+  }
+
+}
+
   /* HEADER CV */
+  @media (max-width: 768px) {
+
   #sec-about > div[style*="display:flex"] {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
   }
+
+}
 
   /* CV IMAGE */
   #sec-about img {
@@ -289,17 +328,23 @@
   }
 
   /* PROJETS */
+  @media (max-width: 768px) {
+
   .projects-grid {
     grid-template-columns: 1fr;
   }
 
+}
+
   /* CONTACT */
+  @media (max-width: 768px) {
+
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
 
-}  
+}
 </style>
 </head>
 <body>
