@@ -593,88 +593,9 @@
   <div class="sec-label">Portfolio</div>
   <div class="sec-title">Projets</div>
 
-  <div class="proj-toggle">
-    <button class="toggle-btn active" onclick="switchTab('manual', this)">Projets sélectionnés</button>
-    <button class="toggle-btn" onclick="switchTab('github', this)">GitHub live</button>
-  </div>
-
-  <!-- PROJETS MANUELS -->
-  <div id="tab-manual">
-    <div class="projects-grid">
-
-      <div class="proj-card">
-        <div class="proj-header">
-          <div class="proj-icon">GEO</div>
-          <div class="proj-stars">★ Featured</div>
-        </div>
-        <div class="proj-name">Modèle spatial de pollution</div>
-        <div class="proj-desc">Prédiction de la pollution atmosphérique via krigeage spatial sur données géographiques réelles — projet TER ISFA.</div>
-        <div class="proj-stack">
-          <span class="proj-tag">Python</span><span class="proj-tag">GeoPandas</span><span class="proj-tag">Sklearn</span><span class="proj-tag">Kriging</span>
-        </div>
-        <div class="proj-result">Carte prédictive générée · RMSE optimisé · données réelles INSEE</div>
-        <div class="proj-btns">
-          <!-- 👉 Remplace # par le lien de ton repo -->
-          <a class="proj-btn" href="#" target="_blank">GitHub →</a>
-        </div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-header">
-          <div class="proj-icon" style="background:rgba(29,158,117,0.12);color:#5DCAA5;">BI</div>
-          <div class="proj-stars">★ Featured</div>
-        </div>
-        <div class="proj-name">Dashboard BI – Analyse commerciale</div>
-        <div class="proj-desc">Dashboard interactif de suivi des KPIs commerciaux avec segmentation dynamique et alertes automatiques.</div>
-        <div class="proj-stack">
-          <span class="proj-tag">Power BI</span><span class="proj-tag">DAX</span><span class="proj-tag">SQL</span>
-        </div>
-        <div class="proj-result">Réduction du temps de reporting de 60% · adopté en production</div>
-        <div class="proj-btns">
-          <a class="proj-btn" href="#" target="_blank">GitHub →</a>
-          <a class="proj-btn" href="#" target="_blank">Démo →</a>
-        </div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-header">
-          <div class="proj-icon" style="background:rgba(239,159,39,0.1);color:#EF9F27;">NLP</div>
-        </div>
-        <div class="proj-name">Analyse de sentiment – Finance</div>
-        <div class="proj-desc">Modèle NLP d'analyse de sentiment sur articles financiers pour anticiper la volatilité des marchés.</div>
-        <div class="proj-stack">
-          <span class="proj-tag">Python</span><span class="proj-tag">Transformers</span><span class="proj-tag">NLP</span><span class="proj-tag">BERT</span>
-        </div>
-        <div class="proj-result">Accuracy 87% · corrélation validée avec mouvements S&P 500</div>
-        <div class="proj-btns">
-          <a class="proj-btn" href="#" target="_blank">GitHub →</a>
-        </div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-header">
-          <div class="proj-icon" style="background:rgba(212,83,126,0.1);color:#D4537E;">VaR</div>
-        </div>
-        <div class="proj-name">Modèle de risque – VaR & Stress Test</div>
-        <div class="proj-desc">Calcul de la Value at Risk historique et paramétrique sur portefeuille actions avec scénarios de stress.</div>
-        <div class="proj-stack">
-          <span class="proj-tag">R</span><span class="proj-tag">Finance</span><span class="proj-tag">Stats</span><span class="proj-tag">Actuariat</span>
-        </div>
-        <div class="proj-result">VaR 99% calculée · backtesting validé sur 5 ans de données</div>
-        <div class="proj-btns">
-          <a class="proj-btn" href="#" target="_blank">GitHub →</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- GITHUB LIVE -->
-  <div id="tab-github" style="display:none;">
-    <div id="gh-profile-area"></div>
-    <div id="gh-repos-area">
-      <div class="gh-loading"><div class="spinner"></div>Chargement depuis GitHub…</div>
-    </div>
+  <div id="gh-profile-area"></div>
+  <div id="gh-repos-area">
+    <div class="gh-loading"><div class="spinner"></div>Chargement depuis GitHub…</div>
   </div>
 </section>
 
@@ -736,21 +657,15 @@ function show(id, el) {
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   if (el) el.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (id === 'projects' && !ghLoaded) loadGitHub();
 }
 
 /* init */
 document.getElementById('sec-home').style.display = 'block';
 ['about','projects','contact'].forEach(s => document.getElementById('sec-'+s).style.display = 'none');
 
-/* ─── Onglets projets ─────────────────────────────── */
+/* ─── Chargement GitHub auto ──────────────────────── */
 var ghLoaded = false;
-function switchTab(tab, btn) {
-  document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('tab-manual').style.display = tab === 'manual' ? 'block' : 'none';
-  document.getElementById('tab-github').style.display = tab === 'github' ? 'block' : 'none';
-  if (tab === 'github' && !ghLoaded) loadGitHub();
-}
 
 /* ─── GitHub API ──────────────────────────────────── */
 async function loadGitHub() {
