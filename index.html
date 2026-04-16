@@ -200,6 +200,7 @@
           <span class="line2">Data, Science, Avenir.</span>
         </h1>
         <p class="hero-tagline">J'exploite la data pour modéliser, anticiper et piloter les risques financiers.</p>
+
         <div class="hero-cta">
           <button class="btn-p" onclick="show('projects', document.querySelector('[onclick*=projects]'))">Voir mes projets →</button>
           <button class="btn-o" onclick="show('contact', document.querySelector('[onclick*=contact]'))">Me contacter</button>
@@ -246,7 +247,7 @@
       <div class="stat-label">SOGECAP dès juin 2026</div>
     </div>
     <div class="stat-item">
-      <span class="stat-num accent">Quant Analyst</span>
+      <span class="stat-num accent">Quant</span>
       <div class="stat-label">Objectif long terme</div>
     </div>
   </div>
@@ -432,6 +433,15 @@ document.getElementById('sec-home').style.display = 'block';
 
 var ghLoaded = false;
 
+/* Charge le compteur de repos dès l'ouverture de la page */
+fetch('https://api.github.com/users/' + GITHUB_USERNAME)
+  .then(r => r.json())
+  .then(p => {
+    var statRepos = document.getElementById('stat-repos');
+    if (statRepos) statRepos.textContent = p.public_repos + '+';
+  })
+  .catch(() => {});
+
 async function loadGitHub() {
   ghLoaded = true;
   var profileArea = document.getElementById('gh-profile-area');
@@ -440,6 +450,7 @@ async function loadGitHub() {
     var pRes = await fetch('https://api.github.com/users/' + GITHUB_USERNAME);
     if (!pRes.ok) throw new Error('Utilisateur GitHub introuvable : ' + GITHUB_USERNAME);
     var p = await pRes.json();
+    /* met à jour le compteur au cas où il n'était pas encore chargé */
     var statRepos = document.getElementById('stat-repos');
     if (statRepos) statRepos.textContent = p.public_repos + '+';
     profileArea.innerHTML = `
