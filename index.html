@@ -165,7 +165,6 @@
     .hero-right { order: -1; }
     .avatar-wrap, .avatar-ring-outer { width: 140px; height: 140px; }
     .avatar-ring-inner { width: 118px; height: 118px; }
-    .avatar-core { width: 98px; height: 98px; font-size: 2rem; }
     .stats-bar { grid-template-columns: 1fr 1fr; }
     section { padding: 3rem 1.5rem; }
     .about-grid { grid-template-columns: 1fr; }
@@ -173,8 +172,23 @@
     .contact-grid { grid-template-columns: 1fr; }
     .nav-links { gap: 1.2rem; }
   }
-  .avatar-core img {
-  filter: contrast(1.05) saturate(1.05);
+.avatar-core {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;   /* 🔥 CRUCIAL */
+  padding: 0;         /* 🔥 CRUCIAL */
+  border: 1px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;   /* enlève le fond violet */
+}
+
+.avatar-core img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 </style>
 </head>
@@ -233,7 +247,10 @@
         <div class="avatar-wrap">
           <div class="avatar-ring-outer">
             <div class="avatar-ring-inner">
-              <div class="avatar-core">MC</div>
+              <div class="avatar-core">
+                <img src="https://raw.githubusercontent.com/MaxenceChan/MaxenceChan.github.io/main/pdp.png" 
+                  alt="Maxence Chan">
+              </div>          
             </div>
           </div>
           <div class="avatar-dot"></div>
