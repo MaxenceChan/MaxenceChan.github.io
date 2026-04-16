@@ -22,7 +22,7 @@
     --font-m:   'DM Mono', monospace;
   }
   html { scroll-behavior: smooth; }
-  body { font-family: var(--font-b); background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; cursor: none; }
+  body { font-family: var(--font-b); background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
   body::before { content: ''; position: fixed; inset: 0; z-index: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; }
 
   /* ================================================
@@ -40,56 +40,13 @@
     box-shadow: 0 0 8px rgba(127,119,221,0.6);
   }
 
-  /* ================================================
-     2. CURSEUR PERSONNALISÉ
-  ================================================ */
-  #cursor-dot {
-    position: fixed;
-    width: 8px;
-    height: 8px;
-    background: var(--accent);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s ease, background 0.2s ease, width 0.2s ease, height 0.2s ease;
-  }
-  #cursor-ring {
-    position: fixed;
-    width: 32px;
-    height: 32px;
-    border: 1.5px solid rgba(127,119,221,0.5);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9997;
-    transform: translate(-50%, -50%);
-    transition: transform 0.12s ease, width 0.25s ease, height 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
-  }
-  body:has(a:hover) #cursor-ring,
-  body:has(button:hover) #cursor-ring,
-  body:has(.proj-card:hover) #cursor-ring,
-  body:has(.social-pill:hover) #cursor-ring {
-    width: 48px;
-    height: 48px;
-    border-color: rgba(127,119,221,0.8);
-  }
-  body:has(a:hover) #cursor-dot,
-  body:has(button:hover) #cursor-dot {
-    background: var(--accent2);
-    width: 6px;
-    height: 6px;
-  }
-  @media (max-width: 768px) {
-    body { cursor: auto; }
-    #cursor-dot, #cursor-ring { display: none; }
-  }
 
   /* NAV */
   nav { position: fixed; top: 2px; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 3rem; border-bottom: 0.5px solid var(--border); background: rgba(7,7,26,0.88); backdrop-filter: blur(16px); }
   .nav-logo { font-family: var(--font-h); font-size: 18px; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; cursor: pointer; }
   .nav-logo:hover { opacity: 0.8; }
   .nav-links { display: flex; gap: 2.5rem; }
-  .nav-links a { font-size: 13px; font-family: var(--font-b); color: var(--muted); text-decoration: none; cursor: none; transition: color 0.2s; letter-spacing: 0.03em; }
+  .nav-links a { font-size: 13px; font-family: var(--font-b); color: var(--muted); text-decoration: none; transition: color 0.2s; letter-spacing: 0.03em; }
   .nav-links a:hover { color: var(--text); }
   .nav-links a.active { color: var(--accent); }
 
@@ -107,12 +64,12 @@
   .hero-tagline { font-size: 16px; color: var(--muted); line-height: 1.7; margin-bottom: 1.8rem; max-width: 480px; }
   .hero-bio { font-size: 14px; color: #9994c5; line-height: 1.85; max-width: 480px; margin-bottom: 2.5rem; padding-left: 1rem; border-left: 2px solid var(--accent); }
   .hero-cta { display: flex; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
-  .btn-p { background: var(--accent); color: #fff; border: none; padding: 11px 26px; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: none; font-family: var(--font-b); transition: opacity 0.2s, transform 0.1s; letter-spacing: 0.02em; }
+  .btn-p { background: var(--accent); color: #fff; border: none; padding: 11px 26px; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: var(--font-b); transition: opacity 0.2s, transform 0.1s; letter-spacing: 0.02em; }
   .btn-p:hover { opacity: 0.85; transform: translateY(-1px); }
-  .btn-o { background: transparent; color: var(--text); border: 0.5px solid rgba(255,255,255,0.15); padding: 11px 26px; border-radius: 8px; font-size: 13px; cursor: none; font-family: var(--font-b); transition: border-color 0.2s, color 0.2s; }
+  .btn-o { background: transparent; color: var(--text); border: 0.5px solid rgba(255,255,255,0.15); padding: 11px 26px; border-radius: 8px; font-size: 13px; cursor: pointer; font-family: var(--font-b); transition: border-color 0.2s, color 0.2s; }
   .btn-o:hover { border-color: var(--accent); color: var(--accent); }
   .hero-socials { display: flex; gap: 0.8rem; flex-wrap: wrap; }
-  .social-pill { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--muted); border: 0.5px solid rgba(255,255,255,0.1); padding: 7px 15px; border-radius: 7px; text-decoration: none; cursor: none; transition: border-color 0.2s, color 0.2s; font-family: var(--font-m); }
+  .social-pill { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--muted); border: 0.5px solid rgba(255,255,255,0.1); padding: 7px 15px; border-radius: 7px; text-decoration: none; transition: border-color 0.2s, color 0.2s; font-family: var(--font-m); }
   .social-pill:hover { border-color: var(--accent); color: var(--accent); }
   .social-pill svg { width: 14px; height: 14px; fill: currentColor; }
 
@@ -169,13 +126,9 @@
      4. FILTRES PAR CATÉGORIE — GRILLE PROJETS
   ================================================ */
   .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.8rem; }
-  .filter-btn { font-family: var(--font-m); font-size: 11px; padding: 6px 16px; border-radius: 20px; border: 0.5px solid var(--border); background: transparent; color: var(--muted); cursor: none; transition: all 0.2s; letter-spacing: 0.06em; }
+  .filter-btn { font-family: var(--font-m); font-size: 11px; padding: 6px 16px; border-radius: 20px; border: 0.5px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; transition: all 0.2s; letter-spacing: 0.06em; }
   .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
   .filter-btn.active { background: rgba(127,119,221,0.15); border-color: var(--accent); color: var(--accent); }
-  .filter-btn[data-filter="Finance"].active { background: rgba(29,158,117,0.15); border-color: var(--accent2); color: var(--accent2); }
-  .filter-btn[data-filter="R"].active { background: rgba(39,108,195,0.15); border-color: #276DC3; color: #85B7EB; }
-  .filter-btn[data-filter="Python"].active { background: rgba(55,118,171,0.15); border-color: #3776AB; color: #85B7EB; }
-  .filter-btn[data-filter="ML"].active { background: rgba(239,159,39,0.15); border-color: var(--accent3); color: var(--accent3); }
   .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
   .proj-card { background: var(--card); border: 0.5px solid var(--border); border-radius: 14px; padding: 1.5rem; transition: border-color 0.2s, transform 0.2s, opacity 0.3s; display: flex; flex-direction: column; gap: 0.8rem; }
   .proj-card:hover { border-color: var(--accent); transform: translateY(-3px); }
@@ -188,7 +141,7 @@
   .proj-stack { display: flex; flex-wrap: wrap; gap: 5px; }
   .proj-tag { font-size: 10px; padding: 2px 9px; border-radius: 8px; background: rgba(255,255,255,0.05); color: var(--muted); border: 0.5px solid rgba(255,255,255,0.08); font-family: var(--font-m); }
   .proj-btns { display: flex; gap: 8px; margin-top: auto; }
-  .proj-btn { font-size: 11px; font-family: var(--font-m); padding: 6px 14px; border-radius: 6px; border: 0.5px solid var(--border); background: transparent; color: var(--muted); cursor: none; text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+  .proj-btn { font-size: 11px; font-family: var(--font-m); padding: 6px 14px; border-radius: 6px; border: 0.5px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; text-decoration: none; transition: border-color 0.2s, color 0.2s; }
   .proj-btn:hover { border-color: var(--accent); color: var(--accent); }
   .gh-loading { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 3rem; color: var(--muted); font-size: 13px; font-family: var(--font-m); }
   .spinner { width: 18px; height: 18px; border: 1.5px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
@@ -207,12 +160,12 @@
   .c-form input, .c-form textarea { background: rgba(255,255,255,0.04); border: 0.5px solid var(--border); border-radius: 9px; color: var(--text); font-family: var(--font-b); font-size: 14px; padding: 11px 15px; outline: none; transition: border-color 0.2s; resize: vertical; }
   .c-form input:focus, .c-form textarea:focus { border-color: var(--accent); }
   .c-form input::placeholder, .c-form textarea::placeholder { color: var(--muted); }
-  .c-submit { background: var(--accent); color: #fff; border: none; padding: 12px 28px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: none; font-family: var(--font-b); transition: opacity 0.2s; width: fit-content; }
+  .c-submit { background: var(--accent); color: #fff; border: none; padding: 12px 28px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: var(--font-b); transition: opacity 0.2s; width: fit-content; }
   .c-submit:hover { opacity: 0.85; }
   .c-submit:disabled { opacity: 0.6; cursor: not-allowed; }
   .c-confirm { display: none; font-size: 13px; color: #5DCAA5; font-family: var(--font-m); margin-top: 0.5rem; }
   .c-right { display: flex; flex-direction: column; gap: 1rem; }
-  .c-link { display: flex; align-items: center; gap: 14px; padding: 1rem 1.3rem; background: var(--card); border: 0.5px solid var(--border); border-radius: 10px; text-decoration: none; cursor: none; transition: border-color 0.2s; }
+  .c-link { display: flex; align-items: center; gap: 14px; padding: 1rem 1.3rem; background: var(--card); border: 0.5px solid var(--border); border-radius: 10px; text-decoration: none; transition: border-color 0.2s; }
   .c-link:hover { border-color: var(--accent); }
   .c-link-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(127,119,221,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .c-link-icon svg { width: 16px; height: 16px; fill: var(--accent); }
@@ -261,10 +214,6 @@
 
 <!-- SCROLL PROGRESS -->
 <div id="scroll-progress"></div>
-
-<!-- CURSEUR PERSONNALISÉ -->
-<div id="cursor-dot"></div>
-<div id="cursor-ring"></div>
 
 <canvas id="particles"></canvas>
 
@@ -381,16 +330,9 @@
       <div class="sec-title">Projets</div>
       <div id="gh-profile-area"></div>
 
-      <!-- BARRE DE FILTRES (injectée dynamiquement) -->
+      <!-- BARRE DE FILTRES (injectée dynamiquement depuis GitHub) -->
       <div id="filter-area" style="display:none;">
-        <div class="filter-bar" id="filter-bar">
-          <button class="filter-btn active" data-filter="Tous" onclick="filterProjects('Tous', this)">Tous</button>
-          <button class="filter-btn" data-filter="Python" onclick="filterProjects('Python', this)">Python</button>
-          <button class="filter-btn" data-filter="R" onclick="filterProjects('R', this)">R</button>
-          <button class="filter-btn" data-filter="ML" onclick="filterProjects('ML', this)">Machine Learning</button>
-          <button class="filter-btn" data-filter="Finance" onclick="filterProjects('Finance', this)">Finance / Risk</button>
-          <button class="filter-btn" data-filter="Jupyter Notebook" onclick="filterProjects('Jupyter Notebook', this)">Jupyter</button>
-        </div>
+        <div class="filter-bar" id="filter-bar"></div>
         <div class="filter-count" id="filter-count"></div>
       </div>
 
@@ -498,41 +440,6 @@ window.addEventListener('scroll', () => {
 });
 
 /* ================================================
-   CURSEUR PERSONNALISÉ
-================================================ */
-const dot = document.getElementById('cursor-dot');
-const ring = document.getElementById('cursor-ring');
-let mouseX = 0, mouseY = 0;
-let ringX = 0, ringY = 0;
-
-document.addEventListener('mousemove', e => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-  dot.style.left = mouseX + 'px';
-  dot.style.top = mouseY + 'px';
-});
-
-// Ring suit avec légère inertie
-function animateRing() {
-  ringX += (mouseX - ringX) * 0.12;
-  ringY += (mouseY - ringY) * 0.12;
-  ring.style.left = ringX + 'px';
-  ring.style.top = ringY + 'px';
-  requestAnimationFrame(animateRing);
-}
-animateRing();
-
-// Disparaît quand la souris quitte la fenêtre
-document.addEventListener('mouseleave', () => {
-  dot.style.opacity = '0';
-  ring.style.opacity = '0';
-});
-document.addEventListener('mouseenter', () => {
-  dot.style.opacity = '1';
-  ring.style.opacity = '1';
-});
-
-/* ================================================
    STATS BAR — Compteur animé
 ================================================ */
 var ghLoaded = false;
@@ -566,19 +473,6 @@ fetch('https://api.github.com/users/' + GITHUB_USERNAME)
    GITHUB — GRILLE PROJETS AVEC FILTRES
 ================================================ */
 
-// Mots-clés pour détecter les catégories Finance/ML
-const FINANCE_KEYWORDS = ['risk','var','finance','credit','scoring','actuari','insurance','portfolio','quant','option','monte','carlo','solvab','bilan','actif','passif'];
-const ML_KEYWORDS = ['ml','machine-learning','deep-learning','neural','xgboost','sklearn','classification','regression','clustering','nlp','lstm','transformer','model','predict'];
-
-function getCategories(repo) {
-  const text = (repo.name + ' ' + (repo.description || '') + ' ' + (repo.topics || []).join(' ')).toLowerCase();
-  const cats = [];
-  if (repo.language) cats.push(repo.language);
-  if (FINANCE_KEYWORDS.some(k => text.includes(k))) cats.push('Finance');
-  if (ML_KEYWORDS.some(k => text.includes(k))) cats.push('ML');
-  return cats;
-}
-
 function filterProjects(filter, btn) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -587,8 +481,8 @@ function filterProjects(filter, btn) {
   let visible = 0;
 
   cards.forEach(card => {
-    const cats = (card.dataset.categories || '').split(',');
-    const show = filter === 'Tous' || cats.includes(filter);
+    const lang = card.dataset.lang || '';
+    const show = filter === 'Tous' || lang === filter;
     if (show) {
       card.classList.remove('hidden');
       visible++;
@@ -641,12 +535,18 @@ async function loadGitHub() {
 
     var LANG_COLORS = { Python:'#3776AB', R:'#276DC3', JavaScript:'#F7DF1E', TypeScript:'#3178C6', HTML:'#E34F26', CSS:'#1572B6', SQL:'#CC2927', 'Jupyter Notebook':'#F37626', Shell:'#89E051', default:'#AFA9EC' };
 
+    // Collecter les langages réellement présents (dans l'ordre de fréquence)
+    const langCount = {};
+    repos.forEach(r => {
+      if (r.language) langCount[r.language] = (langCount[r.language] || 0) + 1;
+    });
+    const langs = Object.keys(langCount).sort((a, b) => langCount[b] - langCount[a]);
+
     var cards = repos.map(r => {
       var langColor = LANG_COLORS[r.language] || LANG_COLORS.default;
       var initials = r.name.substring(0,3).toUpperCase();
-      var cats = getCategories(r);
       return `
-        <div class="proj-card" data-categories="${cats.join(',')}">
+        <div class="proj-card" data-lang="${r.language || ''}">
           <div class="proj-header">
             <div class="proj-icon">${initials}</div>
             ${r.stargazers_count > 0 ? '<div class="proj-stars">★ ' + r.stargazers_count + '</div>' : ''}
@@ -665,6 +565,14 @@ async function loadGitHub() {
     }).join('');
 
     reposArea.innerHTML = '<div class="projects-grid">' + cards + '</div>';
+
+    // Construire la barre de filtres dynamiquement avec les vrais langages
+    const filterBar = document.getElementById('filter-bar');
+    filterBar.innerHTML = `<button class="filter-btn active" data-filter="Tous" onclick="filterProjects('Tous', this)">Tous</button>`;
+    langs.forEach(lang => {
+      const color = LANG_COLORS[lang] || LANG_COLORS.default;
+      filterBar.innerHTML += `<button class="filter-btn" data-filter="${lang}" onclick="filterProjects('${lang}', this)" style="--lang-color:${color}">${lang}</button>`;
+    });
 
     // Afficher filtres + count
     filterArea.style.display = 'block';
