@@ -190,6 +190,116 @@
   height: 100%;
   object-fit: cover;
 }
+@media (max-width: 768px) {
+
+  /* NAV */
+  nav {
+    padding: 0.8rem 1rem;
+  }
+
+  .nav-links {
+    gap: 1rem;
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 6rem 1rem 2rem;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .hero-left {
+    align-items: center;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero-tagline,
+  .hero-bio {
+    max-width: 100%;
+    padding-left: 0;
+    border-left: none;
+  }
+
+  /* BOUTONS */
+  .hero-cta {
+    justify-content: center;
+  }
+
+  /* SOCIALS */
+  .hero-socials {
+    justify-content: center;
+  }
+
+  /* AVATAR */
+  .avatar-wrap {
+    width: 120px;
+    height: 120px;
+  }
+
+  .avatar-ring-outer {
+    width: 120px;
+    height: 120px;
+  }
+
+  .avatar-ring-inner {
+    width: 100px;
+    height: 100px;
+  }
+
+  .avatar-core {
+    width: 80px;
+    height: 80px;
+  }
+
+  /* STATS */
+  .stats-bar {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stat-item {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 2.5rem 1rem;
+  }
+
+  /* HEADER CV */
+  #sec-about > div[style*="display:flex"] {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  /* CV IMAGE */
+  #sec-about img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* PROJETS */
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* CONTACT */
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+}  
 </style>
 </head>
 <body>
