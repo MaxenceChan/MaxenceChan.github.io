@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portfolio | Maxence Chan</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root { --gh-username: "MaxenceChan"; }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -22,14 +22,74 @@
     --font-m:   'DM Mono', monospace;
   }
   html { scroll-behavior: smooth; }
-  body { font-family: var(--font-b); background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+  body { font-family: var(--font-b); background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; cursor: none; }
   body::before { content: ''; position: fixed; inset: 0; z-index: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; }
 
+  /* ================================================
+     1. SCROLL PROGRESS INDICATOR
+  ================================================ */
+  #scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    z-index: 9999;
+    transition: width 0.05s linear;
+    box-shadow: 0 0 8px rgba(127,119,221,0.6);
+  }
+
+  /* ================================================
+     2. CURSEUR PERSONNALISÉ
+  ================================================ */
+  #cursor-dot {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, background 0.2s ease, width 0.2s ease, height 0.2s ease;
+  }
+  #cursor-ring {
+    position: fixed;
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid rgba(127,119,221,0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9997;
+    transform: translate(-50%, -50%);
+    transition: transform 0.12s ease, width 0.25s ease, height 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
+  }
+  body:has(a:hover) #cursor-ring,
+  body:has(button:hover) #cursor-ring,
+  body:has(.proj-card:hover) #cursor-ring,
+  body:has(.social-pill:hover) #cursor-ring {
+    width: 48px;
+    height: 48px;
+    border-color: rgba(127,119,221,0.8);
+  }
+  body:has(a:hover) #cursor-dot,
+  body:has(button:hover) #cursor-dot {
+    background: var(--accent2);
+    width: 6px;
+    height: 6px;
+  }
+  @media (max-width: 768px) {
+    body { cursor: auto; }
+    #cursor-dot, #cursor-ring { display: none; }
+  }
+
   /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 3rem; border-bottom: 0.5px solid var(--border); background: rgba(7,7,26,0.88); backdrop-filter: blur(16px); }
-  .nav-logo { font-family: var(--font-h); font-size: 18px; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; }
+  nav { position: fixed; top: 2px; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 3rem; border-bottom: 0.5px solid var(--border); background: rgba(7,7,26,0.88); backdrop-filter: blur(16px); }
+  .nav-logo { font-family: var(--font-h); font-size: 18px; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; cursor: pointer; }
+  .nav-logo:hover { opacity: 0.8; }
   .nav-links { display: flex; gap: 2.5rem; }
-  .nav-links a { font-size: 13px; font-family: var(--font-b); color: var(--muted); text-decoration: none; cursor: pointer; transition: color 0.2s; letter-spacing: 0.03em; }
+  .nav-links a { font-size: 13px; font-family: var(--font-b); color: var(--muted); text-decoration: none; cursor: none; transition: color 0.2s; letter-spacing: 0.03em; }
   .nav-links a:hover { color: var(--text); }
   .nav-links a.active { color: var(--accent); }
 
@@ -47,12 +107,12 @@
   .hero-tagline { font-size: 16px; color: var(--muted); line-height: 1.7; margin-bottom: 1.8rem; max-width: 480px; }
   .hero-bio { font-size: 14px; color: #9994c5; line-height: 1.85; max-width: 480px; margin-bottom: 2.5rem; padding-left: 1rem; border-left: 2px solid var(--accent); }
   .hero-cta { display: flex; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
-  .btn-p { background: var(--accent); color: #fff; border: none; padding: 11px 26px; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: var(--font-b); transition: opacity 0.2s, transform 0.1s; letter-spacing: 0.02em; }
+  .btn-p { background: var(--accent); color: #fff; border: none; padding: 11px 26px; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: none; font-family: var(--font-b); transition: opacity 0.2s, transform 0.1s; letter-spacing: 0.02em; }
   .btn-p:hover { opacity: 0.85; transform: translateY(-1px); }
-  .btn-o { background: transparent; color: var(--text); border: 0.5px solid rgba(255,255,255,0.15); padding: 11px 26px; border-radius: 8px; font-size: 13px; cursor: pointer; font-family: var(--font-b); transition: border-color 0.2s, color 0.2s; }
+  .btn-o { background: transparent; color: var(--text); border: 0.5px solid rgba(255,255,255,0.15); padding: 11px 26px; border-radius: 8px; font-size: 13px; cursor: none; font-family: var(--font-b); transition: border-color 0.2s, color 0.2s; }
   .btn-o:hover { border-color: var(--accent); color: var(--accent); }
   .hero-socials { display: flex; gap: 0.8rem; flex-wrap: wrap; }
-  .social-pill { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--muted); border: 0.5px solid rgba(255,255,255,0.1); padding: 7px 15px; border-radius: 7px; text-decoration: none; cursor: pointer; transition: border-color 0.2s, color 0.2s; font-family: var(--font-m); }
+  .social-pill { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--muted); border: 0.5px solid rgba(255,255,255,0.1); padding: 7px 15px; border-radius: 7px; text-decoration: none; cursor: none; transition: border-color 0.2s, color 0.2s; font-family: var(--font-m); }
   .social-pill:hover { border-color: var(--accent); color: var(--accent); }
   .social-pill svg { width: 14px; height: 14px; fill: currentColor; }
 
@@ -62,27 +122,40 @@
   .avatar-ring-outer { width: 220px; height: 220px; border-radius: 50%; border: 1px solid rgba(127,119,221,0.3); display: flex; align-items: center; justify-content: center; animation: spin 20s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
   .avatar-ring-inner { width: 190px; height: 190px; border-radius: 50%; border: 0.5px solid rgba(29,158,117,0.25); display: flex; align-items: center; justify-content: center; animation: spin 20s linear infinite reverse; background: rgba(127,119,221,0.04); }
-  .avatar-core { width: 160px; height: 160px; border-radius: 50%; background: linear-gradient(135deg, #1a1640 0%, #2d1b69 100%); border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-h); font-size: 3.2rem; font-weight: 700; color: var(--accent); animation: none; }
+  .avatar-core { width: 160px; height: 160px; border-radius: 50%; overflow: hidden; padding: 0; border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; background: none; }
+  .avatar-core img { width: 100%; height: 100%; object-fit: cover; }
   .avatar-dot { position: absolute; bottom: 18px; right: 18px; width: 16px; height: 16px; border-radius: 50%; background: var(--accent2); border: 2px solid var(--bg); }
 
-  /* STATS BAR */
+  /* ================================================
+     STATS BAR — AMÉLIORÉE (compteurs animés + icônes)
+  ================================================ */
   .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 0.5px solid var(--border); }
-  .stat-item { padding: 1.4rem 3rem; border-right: 0.5px solid var(--border); }
+  .stat-item { padding: 1.4rem 3rem; border-right: 0.5px solid var(--border); display: flex; align-items: center; gap: 1rem; }
   .stat-item:last-child { border-right: none; }
-  .stat-num { font-family: var(--font-h); font-size: 1.9rem; font-weight: 700; color: #fff; display: block; }
+  .stat-icon { width: 38px; height: 38px; border-radius: 9px; background: rgba(127,119,221,0.08); border: 0.5px solid rgba(127,119,221,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; }
+  .stat-icon.green { background: rgba(29,158,117,0.08); border-color: rgba(29,158,117,0.2); }
+  .stat-icon.amber { background: rgba(239,159,39,0.08); border-color: rgba(239,159,39,0.2); }
+  .stat-texts { display: flex; flex-direction: column; }
+  .stat-num { font-family: var(--font-h); font-size: 1.6rem; font-weight: 700; color: #fff; display: block; line-height: 1; }
   .stat-num.accent { color: var(--accent); }
-  .stat-label { font-size: 11px; color: var(--muted); margin-top: 2px; letter-spacing: 0.04em; }
+  .stat-num.green { color: var(--accent2); }
+  .stat-num.amber { color: var(--accent3); }
+  .stat-label { font-size: 11px; color: var(--muted); margin-top: 4px; letter-spacing: 0.04em; }
+
+  /* ================================================
+     3. TRANSITIONS DE SECTION FLUIDES
+  ================================================ */
+  .page-wrap { position: relative; min-height: 60vh; }
+  .page { position: absolute; top: 0; left: 0; right: 0; opacity: 0; transform: translateY(16px); pointer-events: none; transition: opacity 0.35s ease, transform 0.35s ease; }
+  .page.active { opacity: 1; transform: translateY(0); pointer-events: all; position: relative; }
 
   /* SECTIONS */
-  section { max-width: 1100px; margin: 0 auto; padding: 5rem 3rem; display: none; }
-  section.visible { display: block; }
+  #sec-home { display: block; }
+  section { max-width: 1100px; margin: 0 auto; padding: 5rem 3rem; }
   .sec-label { font-family: var(--font-m); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
   .sec-title { font-family: var(--font-h); font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 700; color: #fff; margin-bottom: 2.5rem; letter-spacing: -0.01em; }
 
   /* ABOUT */
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-  .about-grid .objective-card { grid-column: 1 / -1; }
-  .about-grid .skills-wrap { grid-column: 1 / -1; }
   .objective-card { background: linear-gradient(135deg, rgba(127,119,221,0.08), rgba(29,158,117,0.05)); border: 0.5px solid var(--border); border-radius: 14px; padding: 1.6rem 2rem; }
   .obj-lbl { font-family: var(--font-m); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
   .obj-txt { font-size: 15px; color: var(--text); line-height: 1.7; margin-bottom: 1rem; }
@@ -91,31 +164,22 @@
   .path-step.final { background: rgba(29,158,117,0.1); color: #5DCAA5; border-color: rgba(29,158,117,0.3); }
   .path-arrow { color: var(--muted); font-size: 14px; }
 
-  /* TIMELINE */
-  .tl-header { font-size: 11px; font-family: var(--font-m); letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; }
-  .timeline { position: relative; padding-left: 1.5rem; }
-  .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--accent), transparent); }
-  .tl-item { margin-bottom: 1.8rem; position: relative; }
-  .tl-dot { position: absolute; left: -1.82rem; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px rgba(127,119,221,0.5); }
-  .tl-dot.green { background: var(--accent2); box-shadow: 0 0 8px rgba(29,158,117,0.5); }
-  .tl-year { font-family: var(--font-m); font-size: 11px; color: var(--accent); margin-bottom: 4px; }
-  .tl-title { font-family: var(--font-h); font-size: 15px; font-weight: 600; color: var(--text); }
-  .tl-sub { font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
-
-  /* SKILLS */
-  .skills-wrap { margin-top: 0.5rem; }
-  .skills-grid { display: grid; gap: 1rem; }
-  .skill-card { background: var(--card); border: 0.5px solid var(--border); border-radius: 10px; padding: 1rem 1.2rem; }
-  .skill-cat { font-family: var(--font-m); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.7rem; }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .tag { font-size: 11px; padding: 3px 10px; border-radius: 12px; background: rgba(127,119,221,0.1); color: #AFA9EC; border: 0.5px solid rgba(127,119,221,0.2); font-family: var(--font-m); }
-  .tag.g { background: rgba(29,158,117,0.1); color: #5DCAA5; border-color: rgba(29,158,117,0.2); }
-  .tag.a { background: rgba(239,159,39,0.1); color: #EF9F27; border-color: rgba(239,159,39,0.2); }
-
   /* PROJECTS */
+  /* ================================================
+     4. FILTRES PAR CATÉGORIE — GRILLE PROJETS
+  ================================================ */
+  .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.8rem; }
+  .filter-btn { font-family: var(--font-m); font-size: 11px; padding: 6px 16px; border-radius: 20px; border: 0.5px solid var(--border); background: transparent; color: var(--muted); cursor: none; transition: all 0.2s; letter-spacing: 0.06em; }
+  .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .filter-btn.active { background: rgba(127,119,221,0.15); border-color: var(--accent); color: var(--accent); }
+  .filter-btn[data-filter="Finance"].active { background: rgba(29,158,117,0.15); border-color: var(--accent2); color: var(--accent2); }
+  .filter-btn[data-filter="R"].active { background: rgba(39,108,195,0.15); border-color: #276DC3; color: #85B7EB; }
+  .filter-btn[data-filter="Python"].active { background: rgba(55,118,171,0.15); border-color: #3776AB; color: #85B7EB; }
+  .filter-btn[data-filter="ML"].active { background: rgba(239,159,39,0.15); border-color: var(--accent3); color: var(--accent3); }
   .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
-  .proj-card { background: var(--card); border: 0.5px solid var(--border); border-radius: 14px; padding: 1.5rem; transition: border-color 0.2s, transform 0.2s; display: flex; flex-direction: column; gap: 0.8rem; }
+  .proj-card { background: var(--card); border: 0.5px solid var(--border); border-radius: 14px; padding: 1.5rem; transition: border-color 0.2s, transform 0.2s, opacity 0.3s; display: flex; flex-direction: column; gap: 0.8rem; }
   .proj-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .proj-card.hidden { display: none; }
   .proj-header { display: flex; align-items: flex-start; justify-content: space-between; }
   .proj-icon { width: 40px; height: 40px; border-radius: 9px; background: rgba(127,119,221,0.12); display: flex; align-items: center; justify-content: center; font-family: var(--font-m); font-size: 13px; font-weight: 500; color: var(--accent); flex-shrink: 0; }
   .proj-stars { display: flex; align-items: center; gap: 4px; font-family: var(--font-m); font-size: 11px; color: var(--accent3); }
@@ -124,7 +188,7 @@
   .proj-stack { display: flex; flex-wrap: wrap; gap: 5px; }
   .proj-tag { font-size: 10px; padding: 2px 9px; border-radius: 8px; background: rgba(255,255,255,0.05); color: var(--muted); border: 0.5px solid rgba(255,255,255,0.08); font-family: var(--font-m); }
   .proj-btns { display: flex; gap: 8px; margin-top: auto; }
-  .proj-btn { font-size: 11px; font-family: var(--font-m); padding: 6px 14px; border-radius: 6px; border: 0.5px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+  .proj-btn { font-size: 11px; font-family: var(--font-m); padding: 6px 14px; border-radius: 6px; border: 0.5px solid var(--border); background: transparent; color: var(--muted); cursor: none; text-decoration: none; transition: border-color 0.2s, color 0.2s; }
   .proj-btn:hover { border-color: var(--accent); color: var(--accent); }
   .gh-loading { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 3rem; color: var(--muted); font-size: 13px; font-family: var(--font-m); }
   .spinner { width: 18px; height: 18px; border: 1.5px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
@@ -135,6 +199,7 @@
   .gh-info-bio { font-size: 13px; color: var(--muted); margin-top: 3px; }
   .gh-meta { display: flex; gap: 1.5rem; margin-top: 0.6rem; flex-wrap: wrap; }
   .gh-meta-item { font-family: var(--font-m); font-size: 12px; color: var(--accent); }
+  .filter-count { font-family: var(--font-m); font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
 
   /* CONTACT */
   .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
@@ -142,12 +207,12 @@
   .c-form input, .c-form textarea { background: rgba(255,255,255,0.04); border: 0.5px solid var(--border); border-radius: 9px; color: var(--text); font-family: var(--font-b); font-size: 14px; padding: 11px 15px; outline: none; transition: border-color 0.2s; resize: vertical; }
   .c-form input:focus, .c-form textarea:focus { border-color: var(--accent); }
   .c-form input::placeholder, .c-form textarea::placeholder { color: var(--muted); }
-  .c-submit { background: var(--accent); color: #fff; border: none; padding: 12px 28px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: var(--font-b); transition: opacity 0.2s; width: fit-content; }
+  .c-submit { background: var(--accent); color: #fff; border: none; padding: 12px 28px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: none; font-family: var(--font-b); transition: opacity 0.2s; width: fit-content; }
   .c-submit:hover { opacity: 0.85; }
   .c-submit:disabled { opacity: 0.6; cursor: not-allowed; }
   .c-confirm { display: none; font-size: 13px; color: #5DCAA5; font-family: var(--font-m); margin-top: 0.5rem; }
   .c-right { display: flex; flex-direction: column; gap: 1rem; }
-  .c-link { display: flex; align-items: center; gap: 14px; padding: 1rem 1.3rem; background: var(--card); border: 0.5px solid var(--border); border-radius: 10px; text-decoration: none; cursor: pointer; transition: border-color 0.2s; }
+  .c-link { display: flex; align-items: center; gap: 14px; padding: 1rem 1.3rem; background: var(--card); border: 0.5px solid var(--border); border-radius: 10px; text-decoration: none; cursor: none; transition: border-color 0.2s; }
   .c-link:hover { border-color: var(--accent); }
   .c-link-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(127,119,221,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .c-link-icon svg { width: 16px; height: 16px; fill: var(--accent); }
@@ -157,222 +222,55 @@
   /* FOOTER */
   footer { border-top: 0.5px solid var(--border); padding: 2rem 3rem; display: flex; align-items: center; justify-content: space-between; font-family: var(--font-m); font-size: 11px; color: var(--muted); }
 
+  /* PARTICLES MODE */
+  #particles.full { opacity: 1; mask-image: none; -webkit-mask-image: none; }
+  #particles.edges { opacity: 0.6; mask-image: radial-gradient(circle at center, transparent 35%, black 75%); -webkit-mask-image: radial-gradient(circle at center, transparent 35%, black 75%); }
+  #particles { pointer-events: none; }
+
   /* RESPONSIVE */
   @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .hero { padding: 5.5rem 1.5rem 2rem; }
-    .hero-content { flex-direction: column; gap: 2rem; }
-    .hero-right { order: -1; }
-    .avatar-wrap, .avatar-ring-outer { width: 140px; height: 140px; }
-    .avatar-ring-inner { width: 118px; height: 118px; }
+    nav { padding: 0.8rem 1rem; justify-content: center; }
+    .nav-logo { display: none; }
+    .nav-links { gap: 1.2rem; width: 100%; justify-content: space-between; }
+    .nav-links a { font-size: 12px; }
+    .hero { padding: 5.5rem 1.2rem 2rem; min-height: auto; }
+    .hero-content { flex-direction: column; text-align: center; gap: 2rem; }
+    .hero-left { display: flex; flex-direction: column; align-items: center; }
+    .hero h1 { font-size: 2rem; line-height: 1.2; }
+    .hero-tagline { font-size: 14px; }
+    .hero-bio { font-size: 13px; border-left: none; padding-left: 0; }
+    .hero-cta { justify-content: center; }
+    .hero-socials { justify-content: center; }
+    .avatar-wrap, .avatar-ring-outer { width: 120px; height: 120px; }
+    .avatar-ring-inner { width: 100px; height: 100px; }
+    .avatar-core { width: 80px; height: 80px; }
     .stats-bar { grid-template-columns: 1fr 1fr; }
-    section { padding: 4.5rem 1.5rem 3rem; }
-    .about-grid { grid-template-columns: 1fr; }
-    .skills-grid { grid-template-columns: 1fr 1fr !important; }
-    .contact-grid { grid-template-columns: 1fr; }
-    .nav-links { gap: 1.2rem; }
+    .stat-item { padding: 1rem; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .stat-num { font-size: 1.3rem; }
+    section { padding: 5.5rem 1.2rem 3rem; }
+    .sec-title { font-size: 1.6rem; }
+    .sec-label { margin-top: 0.5rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .filter-bar { gap: 6px; }
+    .filter-btn { font-size: 10px; padding: 5px 12px; }
   }
-.avatar-core {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  overflow: hidden;   /* 🔥 CRUCIAL */
-  padding: 0;         /* 🔥 CRUCIAL */
-  border: 1px solid var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: none;   /* enlève le fond violet */
-}
-
-.avatar-core img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-  /* NAV */
-  @media (max-width: 768px) {
-
-  nav {
-    padding: 0.8rem 1rem;
-    justify-content: center;
-  }
-
-  .nav-links {
-    gap: 1.2rem;
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .nav-links a {
-    font-size: 12px;
-  }
-
-}
-
-  /* HERO */
-  @media (max-width: 768px) {
-
-  .hero {
-    padding: 5.5rem 1.2rem 2rem;
-    min-height: auto;
-  }
-
-  .hero-content {
-    flex-direction: column;
-    text-align: center;
-    gap: 2rem;
-  }
-
-  .hero-left {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .hero h1 {
-    font-size: 2rem;
-    line-height: 1.2;
-  }
-
-  .hero-tagline {
-    font-size: 14px;
-  }
-
-  .hero-bio {
-    font-size: 13px;
-    border-left: none;
-    padding-left: 0;
-  }
-
-  .hero-cta {
-    justify-content: center;
-  }
-
-  .hero-socials {
-    justify-content: center;
-  }
-
-}
-
-  /* AVATAR */
-  @media (max-width: 768px) {
-
-  .avatar-wrap {
-    width: 120px;
-    height: 120px;
-  }
-
-  .avatar-ring-outer {
-    width: 120px;
-    height: 120px;
-  }
-
-  .avatar-ring-inner {
-    width: 100px;
-    height: 100px;
-  }
-
-  .avatar-core {
-    width: 80px;
-    height: 80px;
-  }
-
-}
-
-  /* STATS */
-  @media (max-width: 768px) {
-
-  .stats-bar {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .stat-item {
-    padding: 1rem;
-    text-align: center;
-  }
-
-  .stat-num {
-    font-size: 1.5rem;
-  }
-
-}
-/* SECTIONS */
-@media (max-width: 768px) {
-
-  section {
-    padding: 5.5rem 1.2rem 3rem; /* 🔥 ESPACE NAVBAR FIX */
-  }
-
-  .sec-title {
-    font-size: 1.6rem;
-  }
-  .sec-label {
-  margin-top: 0.5rem;
-}
-
-}
-
-  /* HEADER CV */
-  @media (max-width: 768px) {
-
-  #sec-about > div[style*="display:flex"] {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-}
-
-  /* CV IMAGE */
-  #sec-about img {
-    width: 100%;
-    height: auto;
-  }
-
-  /* PROJETS */
-  @media (max-width: 768px) {
-
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-
-}
-
-  /* CONTACT */
-  @media (max-width: 768px) {
-
-  .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-}
-/* Mode normal (home) */
-#particles.full {
-  opacity: 1;
-  mask-image: none;
-  -webkit-mask-image: none;
-}
-
-/* Mode "bords seulement" */
-#particles.edges {
-  opacity: 0.6;
-
-  /* 🔥 masque qui cache le centre */
-  mask-image: radial-gradient(circle at center, transparent 35%, black 75%);
-  -webkit-mask-image: radial-gradient(circle at center, transparent 35%, black 75%);
-}
-#particles {
-  pointer-events: none; /* 🔥 laisse passer les clics */
-}
 </style>
 </head>
 <body>
+
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress"></div>
+
+<!-- CURSEUR PERSONNALISÉ -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
 <canvas id="particles"></canvas>
 
 <!-- NAV -->
 <nav>
+  <div class="nav-logo" onclick="show('home', document.querySelector('[onclick*=home]'))">MC</div>
   <div class="nav-links">
     <a class="active" onclick="show('home',this)">Accueil</a>
     <a onclick="show('about',this)">CV</a>
@@ -381,154 +279,159 @@
   </div>
 </nav>
 
-<!-- HERO -->
-<div id="sec-home" class="visible">
-  <div class="hero">
-    <div class="hero-content">
-      <div class="hero-left">
-        <div class="hero-badge">Data Scientist · Finance & Risk</div>
-        <h1>
-          Maxence<br><span class="accent">Chan</span>
-        </h1>
-        <div class="hero-cta">
-          <button class="btn-p" onclick="show('projects', document.querySelector('[onclick*=projects]'))">Voir mes projets →</button>
-          <button class="btn-o" onclick="show('contact', document.querySelector('[onclick*=contact]'))">Me contacter</button>
-        </div>
-        <div class="hero-socials">
-          <a class="social-pill" href="https://maxencechan.github.io/CV_Maxence_Chan.pdf" target="_blank">
-            <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            GitHub
-          </a>
-          <a class="social-pill" href="https://linkedin.com/in/maxence-chan" target="_blank">
-            <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.59 0 4.25 2.36 4.25 5.43v6.31zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM3.56 20.45h3.56V9H3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg>
-            LinkedIn
-          </a>
-          <a class="social-pill" href="CV_Maxence_Chan.pdf" download>
-            <svg viewBox="0 0 24 24"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 4v-2h14v2H5z"/></svg>
-            CV PDF
-          </a>
-        </div>
-      </div>
-      <div class="hero-right">
-        <div class="avatar-wrap">
-          <div class="avatar-ring-outer">
-            <div class="avatar-ring-inner">
-              <div class="avatar-core">
-                <img src="https://raw.githubusercontent.com/MaxenceChan/MaxenceChan.github.io/main/pdp.png" 
-                  alt="Maxence Chan">
-              </div>          
-            </div>
+<!-- PAGE WRAPPER pour transitions -->
+<div class="page-wrap">
+
+  <!-- HERO -->
+  <div id="sec-home" class="page active">
+    <div class="hero">
+      <div class="hero-content">
+        <div class="hero-left">
+          <div class="hero-badge">Data Scientist · Finance & Risk</div>
+          <h1>
+            Maxence<br><span class="accent">Chan</span>
+          </h1>
+          <div class="hero-cta">
+            <button class="btn-p" onclick="show('projects', document.querySelector('[onclick*=projects]'))">Voir mes projets →</button>
+            <button class="btn-o" onclick="show('contact', document.querySelector('[onclick*=contact]'))">Me contacter</button>
           </div>
-          <div class="avatar-dot"></div>
+          <div class="hero-socials">
+            <a class="social-pill" href="https://maxencechan.github.io/CV_Maxence_Chan.pdf" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+            <a class="social-pill" href="https://linkedin.com/in/maxence-chan" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.59 0 4.25 2.36 4.25 5.43v6.31zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM3.56 20.45h3.56V9H3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg>
+              LinkedIn
+            </a>
+            <a class="social-pill" href="CV_Maxence_Chan.pdf" download>
+              <svg viewBox="0 0 24 24"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 4v-2h14v2H5z"/></svg>
+              CV PDF
+            </a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="avatar-wrap">
+            <div class="avatar-ring-outer">
+              <div class="avatar-ring-inner">
+                <div class="avatar-core">
+                  <img src="https://raw.githubusercontent.com/MaxenceChan/MaxenceChan.github.io/main/pdp.png" alt="Maxence Chan">
+                </div>
+              </div>
+            </div>
+            <div class="avatar-dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS BAR AMÉLIORÉE -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-icon">📁</div>
+        <div class="stat-texts">
+          <span class="stat-num accent" id="stat-repos" data-target="0">—</span>
+          <div class="stat-label">Repositories GitHub</div>
+        </div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon green">🏢</div>
+        <div class="stat-texts">
+          <span class="stat-num green" id="stat-years">2 ans</span>
+          <div class="stat-label">Alternance Orange</div>
+        </div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon amber">📈</div>
+        <div class="stat-texts">
+          <span class="stat-num amber">SG</span>
+          <div class="stat-label">SOGECAP dès juin 2026</div>
+        </div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon">🎯</div>
+        <div class="stat-texts">
+          <span class="stat-num accent">Quant</span>
+          <div class="stat-label">Objectif long terme</div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="stats-bar">
-    <div class="stat-item">
-      <span class="stat-num" id="stat-repos">—</span>
-      <div class="stat-label">Repositories GitHub</div>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num">2 ans</span>
-      <div class="stat-label">Alternance Orange</div>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num" style="color:var(--accent3);">SG</span>
-      <div class="stat-label">SOGECAP dès juin 2026</div>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num accent">Quant</span>
-      <div class="stat-label">Objectif long terme</div>
-    </div>
+  <!-- CV -->
+  <div id="sec-about" class="page">
+    <section>
+      <div class="sec-label">Parcours</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:2rem;flex-wrap:wrap;">
+        <div class="sec-title">Curriculum Vitae</div>
+        <a href="https://maxencechan.github.io/CV_Maxence_Chan.pdf" target="_blank" class="btn-p">
+          Télécharger mon CV →
+        </a>
+      </div>
+      <div style="width:100%;border:0.5px solid var(--border);border-radius:12px;overflow:hidden;background:#fff;">
+        <img src="https://raw.githubusercontent.com/MaxenceChan/MaxenceChan.github.io/main/CV_Maxence_Chan.jpg" alt="CV Maxence Chan" style="width:100%;height:auto;display:block;">
+      </div>
+    </section>
   </div>
-</div>
 
-<!-- CV -->
-<section id="sec-about">
-  <div class="sec-label">Parcours</div>
-  <div style="
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:1rem;
-  margin-bottom:2rem;
-  flex-wrap:wrap;
-">
-  <div class="sec-title">Curriculum Vitae</div>
+  <!-- PROJECTS -->
+  <div id="sec-projects" class="page">
+    <section>
+      <div class="sec-label">Portfolio</div>
+      <div class="sec-title">Projets</div>
+      <div id="gh-profile-area"></div>
 
-  <a href="https://maxencechan.github.io/CV_Maxence_Chan.pdf" target="_blank" class="btn-p">
-    Télécharger mon CV →
-  </a>
-</div>
+      <!-- BARRE DE FILTRES (injectée dynamiquement) -->
+      <div id="filter-area" style="display:none;">
+        <div class="filter-bar" id="filter-bar">
+          <button class="filter-btn active" data-filter="Tous" onclick="filterProjects('Tous', this)">Tous</button>
+          <button class="filter-btn" data-filter="Python" onclick="filterProjects('Python', this)">Python</button>
+          <button class="filter-btn" data-filter="R" onclick="filterProjects('R', this)">R</button>
+          <button class="filter-btn" data-filter="ML" onclick="filterProjects('ML', this)">Machine Learning</button>
+          <button class="filter-btn" data-filter="Finance" onclick="filterProjects('Finance', this)">Finance / Risk</button>
+          <button class="filter-btn" data-filter="Jupyter Notebook" onclick="filterProjects('Jupyter Notebook', this)">Jupyter</button>
+        </div>
+        <div class="filter-count" id="filter-count"></div>
+      </div>
 
-  <!-- CV affiché -->
-  <div style="
-    width:100%;
-    border:0.5px solid var(--border);
-    border-radius:12px;
-    overflow:hidden;
-    background:#fff;
-  ">
-<div style="
-  width:100%;
-  border:0.5px solid var(--border);
-  border-radius:12px;
-  overflow:hidden;
-  background:#fff;
-">
-  <img 
-    src="https://raw.githubusercontent.com/MaxenceChan/MaxenceChan.github.io/main/CV_Maxence_Chan.jpg" 
-    alt="CV Maxence Chan"
-    style="
-      width:100%;
-      height:auto;
-      display:block;
-    "
-  >
-</div>
+      <div id="gh-repos-area">
+        <div class="gh-loading"><div class="spinner"></div>Chargement depuis GitHub…</div>
+      </div>
+    </section>
   </div>
-</section>
 
-<!-- PROJECTS -->
-<section id="sec-projects">
-  <div class="sec-label">Portfolio</div>
-  <div class="sec-title">Projets</div>
-  <div id="gh-profile-area"></div>
-  <div id="gh-repos-area">
-    <div class="gh-loading"><div class="spinner"></div>Chargement depuis GitHub…</div>
+  <!-- CONTACT -->
+  <div id="sec-contact" class="page">
+    <section>
+      <div class="sec-label">Travaillons ensemble</div>
+      <div class="sec-title">Me contacter</div>
+      <div class="contact-grid">
+        <div class="c-form">
+          <input type="text" placeholder="Votre nom" id="c-name"/>
+          <input type="email" placeholder="Votre email" id="c-email"/>
+          <textarea rows="5" placeholder="Votre message…" id="c-msg"></textarea>
+          <button class="c-submit" onclick="sendContact()">Envoyer →</button>
+          <div class="c-confirm" id="c-confirm">Message reçu — je reviens vers vous sous 48h.</div>
+        </div>
+        <div class="c-right">
+          <a class="c-link" href="https://github.com/MaxenceChan" target="_blank">
+            <div class="c-link-icon"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></div>
+            <div><div class="c-link-name">GitHub</div><div class="c-link-sub">github.com/MaxenceChan</div></div>
+          </a>
+          <a class="c-link" href="https://linkedin.com/in/maxence-chan" target="_blank">
+            <div class="c-link-icon"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.59 0 4.25 2.36 4.25 5.43v6.31zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM3.56 20.45h3.56V9H3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg></div>
+            <div><div class="c-link-name">LinkedIn</div><div class="c-link-sub">linkedin.com/in/maxence-chan</div></div>
+          </a>
+          <a class="c-link" href="CV_Maxence_Chan.pdf" download>
+            <div class="c-link-icon"><svg viewBox="0 0 24 24" fill="var(--accent)"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 4v-2h14v2H5z"/></svg></div>
+            <div><div class="c-link-name">Télécharger le CV</div><div class="c-link-sub">Maxence_Chan_CV.pdf</div></div>
+          </a>
+        </div>
+      </div>
+    </section>
   </div>
-</section>
 
-<!-- CONTACT -->
-<section id="sec-contact">
-  <div class="sec-label">Travaillons ensemble</div>
-  <div class="sec-title">Me contacter</div>
-  <div class="contact-grid">
-    <div class="c-form">
-      <input type="text" placeholder="Votre nom" id="c-name"/>
-      <input type="email" placeholder="Votre email" id="c-email"/>
-      <textarea rows="5" placeholder="Votre message…" id="c-msg"></textarea>
-      <button class="c-submit" onclick="sendContact()">Envoyer →</button>
-      <div class="c-confirm" id="c-confirm">Message reçu — je reviens vers vous sous 48h.</div>
-    </div>
-    <div class="c-right">
-      <a class="c-link" href="https://github.com/MaxenceChan" target="_blank">
-        <div class="c-link-icon"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></div>
-        <div><div class="c-link-name">GitHub</div><div class="c-link-sub">github.com/MaxenceChan</div></div>
-      </a>
-      <a class="c-link" href="https://linkedin.com/in/maxence-chan" target="_blank">
-        <div class="c-link-icon"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.59 0 4.25 2.36 4.25 5.43v6.31zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM3.56 20.45h3.56V9H3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg></div>
-        <div><div class="c-link-name">LinkedIn</div><div class="c-link-sub">linkedin.com/in/maxence-chan</div></div>
-      </a>
-      <a class="c-link" href="CV_Maxence_Chan.pdf" download>
-        <div class="c-link-icon"><svg viewBox="0 0 24 24" fill="var(--accent)"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 4v-2h14v2H5z"/></svg></div>
-        <div><div class="c-link-name">Télécharger le CV</div><div class="c-link-sub">Maxence_Chan_CV.pdf</div></div>
-      </a>
-    </div>
-  </div>
-</section>
+</div><!-- /page-wrap -->
 
 <!-- FOOTER -->
 <footer>
@@ -539,24 +442,37 @@
 <script>
 const GITHUB_USERNAME = "MaxenceChan";
 
+/* ================================================
+   NAVIGATION + TRANSITIONS FLUIDES
+================================================ */
 const SECTIONS = ['home','about','projects','contact'];
-function show(id, el) {
-  SECTIONS.forEach(s => {
-    var el2 = document.getElementById('sec-' + s);
-    if (el2) { el2.style.display = 'none'; el2.classList.remove('visible'); }
-  });
+let currentSection = 'home';
 
-  var target = document.getElementById('sec-' + id);
-  if (target) { target.style.display = 'block'; target.classList.add('visible'); }
+function show(id, el) {
+  if (id === currentSection) return;
+
+  // Fade out current
+  const current = document.getElementById('sec-' + currentSection);
+  if (current) {
+    current.classList.remove('active');
+  }
+
+  // Petite pause pour laisser le fade out démarrer, puis fade in
+  setTimeout(() => {
+    const target = document.getElementById('sec-' + id);
+    if (target) {
+      target.classList.add('active');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 80);
+
+  currentSection = id;
 
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   if (el) el.classList.add('active');
 
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  // 🔥 GESTION PARTICULES
+  // Particules
   const particles = document.getElementById("particles");
-
   if (id === "home") {
     particles.classList.remove("edges");
     particles.classList.add("full");
@@ -568,31 +484,141 @@ function show(id, el) {
   if (id === 'projects' && !ghLoaded) loadGitHub();
 }
 
-document.getElementById('sec-home').style.display = 'block';
-['about','projects','contact'].forEach(s => document.getElementById('sec-'+s).style.display = 'none');
+// Init
+document.getElementById('sec-home').classList.add('active');
 
+/* ================================================
+   SCROLL PROGRESS INDICATOR
+================================================ */
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  document.getElementById('scroll-progress').style.width = progress + '%';
+});
+
+/* ================================================
+   CURSEUR PERSONNALISÉ
+================================================ */
+const dot = document.getElementById('cursor-dot');
+const ring = document.getElementById('cursor-ring');
+let mouseX = 0, mouseY = 0;
+let ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  dot.style.left = mouseX + 'px';
+  dot.style.top = mouseY + 'px';
+});
+
+// Ring suit avec légère inertie
+function animateRing() {
+  ringX += (mouseX - ringX) * 0.12;
+  ringY += (mouseY - ringY) * 0.12;
+  ring.style.left = ringX + 'px';
+  ring.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+// Disparaît quand la souris quitte la fenêtre
+document.addEventListener('mouseleave', () => {
+  dot.style.opacity = '0';
+  ring.style.opacity = '0';
+});
+document.addEventListener('mouseenter', () => {
+  dot.style.opacity = '1';
+  ring.style.opacity = '1';
+});
+
+/* ================================================
+   STATS BAR — Compteur animé
+================================================ */
 var ghLoaded = false;
 
-/* Charge le compteur de repos dès l'ouverture de la page */
+function animateCounter(el, target, suffix) {
+  const duration = 1200;
+  const start = performance.now();
+  const update = (now) => {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.round(eased * target);
+    el.textContent = current + suffix;
+    if (progress < 1) requestAnimationFrame(update);
+  };
+  requestAnimationFrame(update);
+}
+
 fetch('https://api.github.com/users/' + GITHUB_USERNAME)
   .then(r => r.json())
   .then(p => {
     var statRepos = document.getElementById('stat-repos');
-    if (statRepos) statRepos.textContent = p.public_repos + '+';
+    if (statRepos) {
+      const count = p.public_repos;
+      animateCounter(statRepos, count, '+');
+    }
   })
   .catch(() => {});
+
+/* ================================================
+   GITHUB — GRILLE PROJETS AVEC FILTRES
+================================================ */
+
+// Mots-clés pour détecter les catégories Finance/ML
+const FINANCE_KEYWORDS = ['risk','var','finance','credit','scoring','actuari','insurance','portfolio','quant','option','monte','carlo','solvab','bilan','actif','passif'];
+const ML_KEYWORDS = ['ml','machine-learning','deep-learning','neural','xgboost','sklearn','classification','regression','clustering','nlp','lstm','transformer','model','predict'];
+
+function getCategories(repo) {
+  const text = (repo.name + ' ' + (repo.description || '') + ' ' + (repo.topics || []).join(' ')).toLowerCase();
+  const cats = [];
+  if (repo.language) cats.push(repo.language);
+  if (FINANCE_KEYWORDS.some(k => text.includes(k))) cats.push('Finance');
+  if (ML_KEYWORDS.some(k => text.includes(k))) cats.push('ML');
+  return cats;
+}
+
+function filterProjects(filter, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const cards = document.querySelectorAll('.proj-card');
+  let visible = 0;
+
+  cards.forEach(card => {
+    const cats = (card.dataset.categories || '').split(',');
+    const show = filter === 'Tous' || cats.includes(filter);
+    if (show) {
+      card.classList.remove('hidden');
+      visible++;
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+
+  const countEl = document.getElementById('filter-count');
+  if (countEl) {
+    countEl.textContent = filter === 'Tous'
+      ? cards.length + ' projets'
+      : visible + ' projet' + (visible > 1 ? 's' : '') + ' · ' + filter;
+  }
+}
 
 async function loadGitHub() {
   ghLoaded = true;
   var profileArea = document.getElementById('gh-profile-area');
   var reposArea = document.getElementById('gh-repos-area');
+  var filterArea = document.getElementById('filter-area');
+
   try {
     var pRes = await fetch('https://api.github.com/users/' + GITHUB_USERNAME);
     if (!pRes.ok) throw new Error('Utilisateur GitHub introuvable : ' + GITHUB_USERNAME);
     var p = await pRes.json();
-    /* met à jour le compteur au cas où il n'était pas encore chargé */
+
     var statRepos = document.getElementById('stat-repos');
-    if (statRepos) statRepos.textContent = p.public_repos + '+';
+    if (statRepos) animateCounter(statRepos, p.public_repos, '+');
+
     profileArea.innerHTML = `
       <div class="gh-profile">
         <img class="gh-avatar" src="${p.avatar_url}" alt="${p.login}">
@@ -606,16 +632,21 @@ async function loadGitHub() {
           </div>
         </div>
       </div>`;
+
     var rRes = await fetch('https://api.github.com/users/' + GITHUB_USERNAME + '/repos?sort=updated&per_page=30');
     var repos = await rRes.json();
     repos = repos.filter(r => !r.fork).sort((a,b) => b.stargazers_count - a.stargazers_count);
+
     if (repos.length === 0) { reposArea.innerHTML = '<div class="gh-error">Aucun repo public trouvé.</div>'; return; }
-    var LANG_COLORS = { Python:'#3776AB', R:'#276DC3', JavaScript:'#F7DF1E', TypeScript:'#3178C6', HTML:'#E34F26', CSS:'#1572B6', SQL:'#CC2927', Jupyter:'#F37626', Shell:'#89E051', default:'#AFA9EC' };
+
+    var LANG_COLORS = { Python:'#3776AB', R:'#276DC3', JavaScript:'#F7DF1E', TypeScript:'#3178C6', HTML:'#E34F26', CSS:'#1572B6', SQL:'#CC2927', 'Jupyter Notebook':'#F37626', Shell:'#89E051', default:'#AFA9EC' };
+
     var cards = repos.map(r => {
       var langColor = LANG_COLORS[r.language] || LANG_COLORS.default;
       var initials = r.name.substring(0,3).toUpperCase();
+      var cats = getCategories(r);
       return `
-        <div class="proj-card">
+        <div class="proj-card" data-categories="${cats.join(',')}">
           <div class="proj-header">
             <div class="proj-icon">${initials}</div>
             ${r.stargazers_count > 0 ? '<div class="proj-stars">★ ' + r.stargazers_count + '</div>' : ''}
@@ -632,12 +663,22 @@ async function loadGitHub() {
           </div>
         </div>`;
     }).join('');
+
     reposArea.innerHTML = '<div class="projects-grid">' + cards + '</div>';
+
+    // Afficher filtres + count
+    filterArea.style.display = 'block';
+    const countEl = document.getElementById('filter-count');
+    if (countEl) countEl.textContent = repos.length + ' projets';
+
   } catch(e) {
     reposArea.innerHTML = `<div class="gh-error">Erreur : ${e.message}</div>`;
   }
 }
 
+/* ================================================
+   CONTACT
+================================================ */
 async function sendContact() {
   var name = document.getElementById('c-name').value.trim();
   var email = document.getElementById('c-email').value.trim();
@@ -650,7 +691,7 @@ async function sendContact() {
     var res = await fetch('https://formspree.io/f/mjgjygqd', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ name: name, email: email, message: msg })
+      body: JSON.stringify({ name, email, message: msg })
     });
     if (res.ok) {
       var confirm = document.getElementById('c-confirm');
@@ -669,10 +710,12 @@ async function sendContact() {
   btn.disabled = false;
 }
 
+/* ================================================
+   PARTICULES
+================================================ */
 (function(){
   var c = document.getElementById('particles');
   if (!c) return;
-
   var ctx = c.getContext('2d');
   var W, H, dots = [];
   var mouse = { x: null, y: null };
@@ -683,90 +726,46 @@ async function sendContact() {
     c.width = W;
     c.height = H;
     dots = [];
-
-    // 🔥 DENSITÉ ADAPTATIVE
     var density = window.innerWidth < 768 ? 6000 : 3000;
     var n = Math.floor(W * H / density);
-
     for (var i = 0; i < n; i++) {
-      dots.push({
-        x: Math.random()*W,
-        y: Math.random()*H,
-        vx: (Math.random()-.5)*0.3,
-        vy: (Math.random()-.5)*0.3,
-
-        // 🔥 PARTICULES PLUS GROSSES
-        r: Math.random()*2.5 + 1.2,
-
-        a: Math.random()*0.7 + 0.2
-      });
+      dots.push({ x: Math.random()*W, y: Math.random()*H, vx: (Math.random()-.5)*0.3, vy: (Math.random()-.5)*0.3, r: Math.random()*2.5+1.2, a: Math.random()*0.7+0.2 });
     }
   }
 
   resize();
   window.addEventListener('resize', resize);
-
-  // 🔥 INTERACTION SOURIS
-  window.addEventListener('mousemove', function(e){
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-  });
+  window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
 
   function draw(){
     ctx.clearRect(0,0,W,H);
-
     for (var i=0;i<dots.length;i++){
       var d = dots[i];
-
-      d.x += d.vx;
-      d.y += d.vy;
-
-      if(d.x<0)d.x=W;
-      if(d.x>W)d.x=0;
-      if(d.y<0)d.y=H;
-      if(d.y>H)d.y=0;
-
-      // 🔥 GLOW EFFECT
-      var glow = ctx.createRadialGradient(d.x, d.y, 0, d.x, d.y, d.r*4);
-      glow.addColorStop(0, "rgba(127,119,221," + d.a + ")");
-      glow.addColorStop(1, "rgba(127,119,221,0)");
-
-      ctx.beginPath();
-      ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
-      ctx.fillStyle = glow;
-      ctx.fill();
-
-      // 🔥 LIENS ENTRE PARTICULES
+      d.x += d.vx; d.y += d.vy;
+      if(d.x<0)d.x=W; if(d.x>W)d.x=0;
+      if(d.y<0)d.y=H; if(d.y>H)d.y=0;
+      var glow = ctx.createRadialGradient(d.x,d.y,0,d.x,d.y,d.r*4);
+      glow.addColorStop(0,"rgba(127,119,221,"+d.a+")");
+      glow.addColorStop(1,"rgba(127,119,221,0)");
+      ctx.beginPath(); ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
+      ctx.fillStyle = glow; ctx.fill();
       for(var j=i+1;j<dots.length;j++){
         var dx=d.x-dots[j].x, dy=d.y-dots[j].y;
         var dist=Math.sqrt(dx*dx+dy*dy);
-
-        if(dist < 140){
-          ctx.beginPath();
-          ctx.moveTo(d.x,d.y);
-          ctx.lineTo(dots[j].x,dots[j].y);
+        if(dist<140){
+          ctx.beginPath(); ctx.moveTo(d.x,d.y); ctx.lineTo(dots[j].x,dots[j].y);
           ctx.strokeStyle='rgba(127,119,221,'+(0.1*(1-dist/140))+')';
-          ctx.lineWidth=0.7;
-          ctx.stroke();
+          ctx.lineWidth=0.7; ctx.stroke();
         }
       }
-
-      // 🔥 INTERACTION SOURIS
       if(mouse.x !== null){
-        var dx = d.x - mouse.x;
-        var dy = d.y - mouse.y;
-        var dist = Math.sqrt(dx*dx + dy*dy);
-
-        if(dist < 120){
-          d.x += dx * 0.01;
-          d.y += dy * 0.01;
-        }
+        var mx=d.x-mouse.x, my=d.y-mouse.y;
+        var md=Math.sqrt(mx*mx+my*my);
+        if(md<120){ d.x+=mx*0.01; d.y+=my*0.01; }
       }
     }
-
     requestAnimationFrame(draw);
   }
-
   draw();
 })();
 </script>
