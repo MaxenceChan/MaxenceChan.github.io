@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maxence Chan — Data Scientist · Finance & Risk</title>
-<meta name="description" content="Portfolio de Maxence Chan, Data Scientist spécialisé en finance et gestion du risque. Alternance Orange, bientôt SOGECAP, cap sur la finance quantitative.">
+<title>Maxence Chan — Apprenti Data · Cap actuariat &amp; quant</title>
+<meta name="description" content="Portfolio de Maxence Chan, apprenti Data — cap actuariat & finance quantitative. BUT Science des Données, alternance Orange, M1 Économétrie à l'ISFA, bientôt SOGECAP.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Instrument+Serif&display=swap" rel="stylesheet">
@@ -51,7 +51,6 @@
 
   ::selection { background: var(--accent); color: #fff; }
 
-  /* Noise + grid background */
   body::before {
     content: '';
     position: fixed;
@@ -163,10 +162,7 @@
     0%, 100% { opacity: 1; transform: scale(1); }
     50% { opacity: 0.5; transform: scale(0.9); }
   }
-  .nav-links {
-    display: flex;
-    gap: 4px;
-  }
+  .nav-links { display: flex; gap: 4px; }
   .nav-links a {
     font-size: 13px;
     font-family: var(--font-b);
@@ -179,10 +175,7 @@
     cursor: none;
   }
   .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
-  .nav-links a.active {
-    color: #fff;
-    background: rgba(127,119,221,0.18);
-  }
+  .nav-links a.active { color: #fff; background: rgba(127,119,221,0.18); }
 
   @media (max-width: 720px) {
     nav { top: 12px; padding: 6px 8px 6px 14px; gap: 4px; }
@@ -191,9 +184,7 @@
     .nav-links a { font-size: 11px; padding: 6px 10px; }
   }
 
-  /* ================================================
-     LAYOUT
-  ================================================ */
+  /* LAYOUT */
   .page-wrap { position: relative; z-index: 1; }
   .page {
     opacity: 0;
@@ -247,6 +238,7 @@
     color: #fff;
     letter-spacing: -0.025em;
     line-height: 1.15;
+    padding-bottom: 0.12em;
   }
   .sec-title em {
     font-family: var(--font-s);
@@ -260,21 +252,32 @@
     margin-right: -0.05em;
     display: inline-block;
   }
-  .sec-sub {
-    color: var(--muted);
-    font-size: 15px;
-    max-width: 360px;
+  .sec-subtitle {
+    font-family: var(--font-h);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    padding-bottom: 0.12em;
+    margin-top: 3.5rem;
+    margin-bottom: 1.5rem;
   }
+  .sec-subtitle em {
+    font-family: var(--font-s);
+    font-style: italic;
+    font-weight: 400;
+    background: linear-gradient(120deg, var(--accent-2), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding-right: 0.15em;
+    display: inline-block;
+  }
+  .sec-sub { color: var(--muted); font-size: 15px; max-width: 360px; }
 
-  /* ================================================
-     HERO
-  ================================================ */
-  #particles {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-  }
+  /* HERO */
+  #particles { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
   .hero {
     position: relative;
     min-height: 100vh;
@@ -345,10 +348,11 @@
     font-family: var(--font-h);
     font-size: clamp(2.8rem, 7.5vw, 6rem);
     font-weight: 700;
-    line-height: 0.96;
+    line-height: 1.05;
     color: #fff;
     margin-bottom: 1.5rem;
     letter-spacing: -0.035em;
+    padding-bottom: 0.15em;
     animation: fadeUp 1s ease 0.1s both;
   }
   .hero h1 .italic {
@@ -414,35 +418,23 @@
     text-decoration: none;
     cursor: none;
     border: none;
-    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s, background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     position: relative;
     overflow: hidden;
   }
   .btn .arr { display: inline-block; transition: transform 0.25s ease; }
   .btn:hover .arr { transform: translate(3px, -3px); }
-
   .btn-p {
     background: var(--accent);
     color: #fff;
     box-shadow: 0 10px 30px -10px rgba(127,119,221,0.7);
   }
   .btn-p:hover { background: #9189e5; transform: translateY(-2px); box-shadow: 0 15px 35px -10px rgba(127,119,221,0.9); }
-
-  .btn-o {
-    background: transparent;
-    color: var(--text);
-    border: 0.5px solid rgba(255,255,255,0.18);
-  }
+  .btn-o { background: transparent; color: var(--text); border: 0.5px solid rgba(255,255,255,0.18); }
   .btn-o:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
-  .hero-socials {
-    display: flex;
-    gap: 0.6rem;
-    flex-wrap: wrap;
-    animation: fadeUp 1s ease 0.4s both;
-  }
+  .hero-socials { display: flex; gap: 0.6rem; flex-wrap: wrap; animation: fadeUp 1s ease 0.4s both; }
   @media (max-width: 900px) { .hero-socials { justify-content: center; } }
-
   .social-pill {
     display: inline-flex;
     align-items: center;
@@ -461,95 +453,62 @@
 
   /* AVATAR */
   .hero-right { display: flex; justify-content: center; }
-  .avatar-stack {
-    position: relative;
-    width: 320px; height: 320px;
-    animation: fadeUp 1.2s ease 0.2s both;
-  }
+  .avatar-stack { position: relative; width: 320px; height: 320px; animation: fadeUp 1.2s ease 0.2s both; }
   @media (max-width: 900px) { .avatar-stack { width: 240px; height: 240px; } }
-
   .avatar-ring {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
+    position: absolute; inset: 0; border-radius: 50%;
     border: 0.5px dashed rgba(127,119,221,0.45);
     animation: spin 30s linear infinite;
   }
-  .avatar-ring::before,
-  .avatar-ring::after {
-    content: '';
-    position: absolute;
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    background: var(--accent);
+  .avatar-ring::before, .avatar-ring::after {
+    content: ''; position: absolute; width: 10px; height: 10px;
+    border-radius: 50%; background: var(--accent);
     box-shadow: 0 0 12px var(--accent);
   }
   .avatar-ring::before { top: -5px; left: 50%; transform: translateX(-50%); }
   .avatar-ring::after { bottom: -5px; right: 30%; background: var(--accent-2); box-shadow: 0 0 12px var(--accent-2); }
   @keyframes spin { to { transform: rotate(360deg); } }
-
   .avatar-ring-2 {
-    position: absolute;
-    inset: 20px;
-    border-radius: 50%;
+    position: absolute; inset: 20px; border-radius: 50%;
     border: 0.5px solid rgba(29,158,117,0.25);
     animation: spin 45s linear infinite reverse;
   }
   .avatar-ring-2::before {
-    content: '';
-    position: absolute;
-    top: 50%; right: -4px;
-    transform: translateY(-50%);
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--accent-3);
+    content: ''; position: absolute; top: 50%; right: -4px;
+    transform: translateY(-50%); width: 8px; height: 8px;
+    border-radius: 50%; background: var(--accent-3);
     box-shadow: 0 0 10px var(--accent-3);
   }
   .avatar-core {
-    position: absolute;
-    inset: 44px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 1.5px solid var(--accent);
+    position: absolute; inset: 44px; border-radius: 50%;
+    overflow: hidden; border: 1.5px solid var(--accent);
     background: linear-gradient(135deg, rgba(127,119,221,0.3), rgba(29,158,117,0.1));
     box-shadow: 0 20px 60px -15px rgba(127,119,221,0.5), inset 0 0 30px rgba(127,119,221,0.15);
   }
-  .avatar-core img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+  .avatar-core img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .avatar-status {
-    position: absolute;
-    bottom: 28px; right: 28px;
+    position: absolute; bottom: 28px; right: 28px;
     padding: 6px 10px 6px 22px;
     background: rgba(7,7,26,0.9);
     backdrop-filter: blur(10px);
     border: 0.5px solid rgba(29,158,117,0.4);
     border-radius: 100px;
     font-family: var(--font-m);
-    font-size: 10px;
-    font-weight: 500;
+    font-size: 10px; font-weight: 500;
     color: var(--accent-2);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    letter-spacing: 0.08em; text-transform: uppercase;
   }
   .avatar-status::before {
-    content: '';
-    position: absolute;
-    left: 10px; top: 50%;
+    content: ''; position: absolute; left: 10px; top: 50%;
     transform: translateY(-50%);
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: var(--accent-2);
-    box-shadow: 0 0 8px var(--accent-2);
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent-2); box-shadow: 0 0 8px var(--accent-2);
     animation: pulse 1.6s infinite;
   }
 
   /* Marquee */
   .marquee {
-    position: relative;
-    z-index: 2;
+    position: relative; z-index: 2;
     margin: 3rem 0 0;
     overflow: hidden;
     padding: 1.2rem 0;
@@ -559,11 +518,7 @@
     mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
     -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
   }
-  .marquee-track {
-    display: inline-flex;
-    white-space: nowrap;
-    animation: marquee 45s linear infinite;
-  }
+  .marquee-track { display: inline-flex; white-space: nowrap; animation: marquee 45s linear infinite; }
   .marquee-item {
     font-family: var(--font-s);
     font-style: italic;
@@ -574,21 +529,12 @@
     align-items: center;
     gap: 2rem;
   }
-  .marquee-item::after {
-    content: '✦';
-    font-style: normal;
-    font-size: 0.6em;
-    color: var(--accent);
-  }
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
+  .marquee-item::after { content: '✦'; font-style: normal; font-size: 0.6em; color: var(--accent); }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
   /* Bento stats */
   .stats-bar {
-    position: relative;
-    z-index: 2;
+    position: relative; z-index: 2;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 12px;
@@ -597,24 +543,20 @@
     padding: 0 2.5rem;
   }
   @media (max-width: 900px) { .stats-bar { grid-template-columns: 1fr 1fr; padding: 0 1.2rem; } }
-
   .stat-item {
     position: relative;
     padding: 1.4rem 1.6rem;
     background: var(--card);
     border: 0.5px solid var(--border);
     border-radius: var(--radius);
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+    display: flex; align-items: center; gap: 1rem;
     overflow: hidden;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s, border-color 0.3s;
   }
   .stat-item:hover { transform: translateY(-3px); border-color: var(--accent); }
   .stat-item::before {
     content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
+    position: absolute; top: 0; left: 0; right: 0;
     height: 2px;
     background: linear-gradient(90deg, transparent, var(--c, var(--accent)), transparent);
     opacity: 0.6;
@@ -622,59 +564,41 @@
   .stat-item.green { --c: var(--accent-2); }
   .stat-item.amber { --c: var(--accent-3); }
   .stat-item.pink  { --c: var(--accent-4); }
-
   .stat-icon {
-    width: 42px; height: 42px;
-    border-radius: 12px;
+    width: 42px; height: 42px; border-radius: 12px;
     background: rgba(127,119,221,0.1);
     border: 0.5px solid rgba(127,119,221,0.25);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
   }
   .stat-icon.green { background: rgba(29,158,117,0.1); border-color: rgba(29,158,117,0.3); }
   .stat-icon.amber { background: rgba(239,159,39,0.1); border-color: rgba(239,159,39,0.3); }
   .stat-icon.pink  { background: rgba(255,126,182,0.1); border-color: rgba(255,126,182,0.3); }
-
   .stat-num {
     font-family: var(--font-h);
     font-size: clamp(1.3rem, 2vw, 1.6rem);
-    font-weight: 700;
-    color: #fff;
-    display: block;
-    line-height: 1;
+    font-weight: 700; color: #fff;
+    display: block; line-height: 1;
     letter-spacing: -0.01em;
   }
   .stat-num.accent { color: var(--accent); }
   .stat-num.green  { color: var(--accent-2); }
   .stat-num.amber  { color: var(--accent-3); }
   .stat-num.pink   { color: var(--accent-4); }
-
   .stat-label {
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 5px;
-    letter-spacing: 0.04em;
+    font-size: 11px; color: var(--muted);
+    margin-top: 5px; letter-spacing: 0.04em;
     font-family: var(--font-m);
   }
 
-  /* ================================================
-     ABOUT / CV
-  ================================================ */
+  /* ABOUT / CV */
   .path-flow {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin: 1.2rem 0 0;
+    display: flex; align-items: center; gap: 0.5rem;
+    flex-wrap: wrap; margin: 1.2rem 0 0;
   }
   .path-step {
-    font-family: var(--font-m);
-    font-size: 12px;
-    padding: 6px 14px;
-    border-radius: 100px;
+    font-family: var(--font-m); font-size: 12px;
+    padding: 6px 14px; border-radius: 100px;
     background: rgba(127,119,221,0.1);
     color: #AFA9EC;
     border: 0.5px solid rgba(127,119,221,0.28);
@@ -689,10 +613,8 @@
   .path-arrow { color: var(--dim); font-size: 12px; }
 
   .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.2rem;
-    margin-bottom: 3rem;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.2rem; margin-bottom: 1.2rem;
   }
   @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; } }
 
@@ -705,22 +627,18 @@
   }
   .about-card:hover { border-color: var(--accent); }
   .about-card .kicker {
-    font-family: var(--font-m);
-    font-size: 11px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1rem;
+    font-family: var(--font-m); font-size: 11px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.5rem;
   }
   .about-card h3 {
     font-family: var(--font-h);
-    font-size: 1.3rem;
-    font-weight: 600;
+    font-size: 1.25rem; font-weight: 600;
     color: #fff;
-    margin-bottom: 0.9rem;
+    margin-bottom: 0;
     letter-spacing: -0.01em;
-    line-height: 1.45;
-    padding-bottom: 0.15em;
+    line-height: 1.35;
+    padding-bottom: 0.1em;
   }
   .about-card h3 em {
     font-family: var(--font-s);
@@ -732,17 +650,33 @@
     color: var(--text-2);
     font-size: 14px;
     line-height: 1.7;
+    margin-top: 1.2rem;
   }
+
+  /* Logo chip in card */
+  .card-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .card-logo {
+    width: 56px; height: 56px;
+    border-radius: 12px;
+    object-fit: contain;
+    background: #fff;
+    padding: 8px;
+    flex-shrink: 0;
+    border: 0.5px solid var(--border-2);
+    box-shadow: 0 4px 16px -4px rgba(0,0,0,0.3);
+  }
+  .card-head-text { flex: 1; min-width: 0; }
 
   /* Skills */
   .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-bottom: 3rem;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1rem; margin-bottom: 3rem;
   }
   @media (max-width: 900px) { .skills-grid { grid-template-columns: 1fr; } }
-
   .skill-card {
     background: var(--card);
     border: 0.5px solid var(--border);
@@ -755,8 +689,7 @@
   .skill-card:hover { transform: translateY(-4px); border-color: var(--accent); }
   .skill-card::before {
     content: '';
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(127,119,221,0.1), transparent 50%);
     opacity: 0;
     transition: opacity 0.3s;
@@ -764,32 +697,20 @@
   }
   .skill-card:hover::before { opacity: 1; }
   .skill-icon {
-    width: 40px; height: 40px;
-    border-radius: 12px;
+    width: 40px; height: 40px; border-radius: 12px;
     background: linear-gradient(135deg, rgba(127,119,221,0.25), rgba(29,158,117,0.15));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    margin-bottom: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; margin-bottom: 1rem;
   }
   .skill-card h4 {
     font-family: var(--font-h);
-    font-size: 1rem;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 0.8rem;
+    font-size: 1rem; font-weight: 600;
+    color: #fff; margin-bottom: 0.8rem;
   }
-  .skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
   .skill-tag {
-    font-family: var(--font-m);
-    font-size: 11px;
-    padding: 4px 10px;
-    border-radius: 6px;
+    font-family: var(--font-m); font-size: 11px;
+    padding: 4px 10px; border-radius: 6px;
     background: rgba(255,255,255,0.04);
     color: var(--text-2);
     border: 0.5px solid var(--border-2);
@@ -802,20 +723,13 @@
     border-radius: var(--radius);
     padding: 0.8rem;
     overflow: hidden;
+    margin-top: 2rem;
   }
-  .cv-box img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 12px;
-  }
+  .cv-box img { width: 100%; height: auto; display: block; border-radius: 12px; }
 
-  /* ================================================
-     PROJECTS
-  ================================================ */
+  /* PROJECTS */
   .gh-profile {
-    display: flex;
-    align-items: center;
+    display: flex; align-items: center;
     gap: 1.4rem;
     background: linear-gradient(135deg, rgba(127,119,221,0.08), rgba(29,158,117,0.04));
     border: 0.5px solid var(--border);
@@ -833,46 +747,25 @@
   }
   .gh-info-name {
     font-family: var(--font-h);
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1.1rem; font-weight: 600;
     color: #fff;
   }
-  .gh-info-bio {
-    font-size: 13px;
-    color: var(--muted);
-    margin-top: 4px;
-  }
-  .gh-meta {
-    display: flex;
-    gap: 1.2rem;
-    margin-top: 0.8rem;
-    flex-wrap: wrap;
-  }
+  .gh-info-bio { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .gh-meta { display: flex; gap: 1.2rem; margin-top: 0.8rem; flex-wrap: wrap; }
   .gh-meta-item {
     font-family: var(--font-m);
-    font-size: 12px;
-    color: var(--text-2);
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
+    font-size: 12px; color: var(--text-2);
+    display: inline-flex; align-items: center; gap: 5px;
   }
 
-  .filter-bar {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 1.2rem;
-  }
+  .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.2rem; }
   .filter-btn {
     font-family: var(--font-m);
-    font-size: 11px;
-    padding: 7px 16px;
+    font-size: 11px; padding: 7px 16px;
     border-radius: 100px;
     border: 0.5px solid var(--border);
-    background: transparent;
-    color: var(--muted);
-    cursor: none;
-    transition: all 0.2s;
+    background: transparent; color: var(--muted);
+    cursor: none; transition: all 0.2s;
     letter-spacing: 0.04em;
   }
   .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
@@ -883,8 +776,7 @@
   }
   .filter-count {
     font-family: var(--font-m);
-    font-size: 11px;
-    color: var(--muted);
+    font-size: 11px; color: var(--muted);
     margin-bottom: 1.2rem;
   }
 
@@ -893,63 +785,38 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1rem;
   }
-
   .proj-card {
     background: var(--card);
     border: 0.5px solid var(--border);
     border-radius: var(--radius);
     padding: 1.5rem;
     transition: transform 0.3s cubic-bezier(0.2,0.8,0.2,1), border-color 0.3s, box-shadow 0.3s;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    position: relative;
-    overflow: hidden;
+    display: flex; flex-direction: column; gap: 0.8rem;
+    position: relative; overflow: hidden;
     min-height: 220px;
   }
   .proj-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 100%;
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 100%;
     background: radial-gradient(circle at var(--mx, 50%) var(--my, 0%), rgba(127,119,221,0.12), transparent 50%);
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
-    z-index: 0;
+    opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 0;
   }
   .proj-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 20px 40px -20px rgba(127,119,221,0.4); }
   .proj-card:hover::before { opacity: 1; }
   .proj-card > * { position: relative; z-index: 1; }
   .proj-card.hidden { display: none; }
-
-  .proj-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 10px;
-  }
+  .proj-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
   .proj-icon {
-    width: 44px; height: 44px;
-    border-radius: 12px;
+    width: 44px; height: 44px; border-radius: 12px;
     background: linear-gradient(135deg, rgba(127,119,221,0.2), rgba(29,158,117,0.08));
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     font-family: var(--font-h);
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--accent);
+    font-size: 13px; font-weight: 700; color: var(--accent);
     border: 0.5px solid rgba(127,119,221,0.3);
-    flex-shrink: 0;
-    letter-spacing: 0.02em;
+    flex-shrink: 0; letter-spacing: 0.02em;
   }
   .proj-stars {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-family: var(--font-m);
-    font-size: 11px;
+    display: flex; align-items: center; gap: 4px;
+    font-family: var(--font-m); font-size: 11px;
     color: var(--accent-3);
     padding: 4px 10px;
     background: rgba(239,159,39,0.1);
@@ -958,66 +825,35 @@
   }
   .proj-name {
     font-family: var(--font-h);
-    font-size: 16px;
-    font-weight: 600;
-    color: #fff;
-    line-height: 1.3;
-    letter-spacing: -0.005em;
+    font-size: 16px; font-weight: 600; color: #fff;
+    line-height: 1.3; letter-spacing: -0.005em;
   }
-  .proj-desc {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.65;
-    flex: 1;
-  }
-  .proj-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-  }
+  .proj-desc { font-size: 13px; color: var(--muted); line-height: 1.65; flex: 1; }
+  .proj-stack { display: flex; flex-wrap: wrap; gap: 5px; }
   .proj-tag {
-    font-family: var(--font-m);
-    font-size: 10px;
-    padding: 3px 10px;
-    border-radius: 100px;
+    font-family: var(--font-m); font-size: 10px;
+    padding: 3px 10px; border-radius: 100px;
     background: rgba(255,255,255,0.04);
     color: var(--muted);
     border: 0.5px solid var(--border-2);
     letter-spacing: 0.02em;
   }
-  .proj-btns {
-    display: flex;
-    gap: 6px;
-    margin-top: auto;
-  }
+  .proj-btns { display: flex; gap: 6px; margin-top: auto; }
   .proj-btn {
-    font-family: var(--font-m);
-    font-size: 11px;
-    padding: 7px 14px;
-    border-radius: 100px;
+    font-family: var(--font-m); font-size: 11px;
+    padding: 7px 14px; border-radius: 100px;
     border: 0.5px solid var(--border);
-    background: transparent;
-    color: var(--muted);
-    cursor: none;
-    text-decoration: none;
+    background: transparent; color: var(--muted);
+    cursor: none; text-decoration: none;
     transition: border-color 0.2s, color 0.2s, background 0.2s;
     letter-spacing: 0.02em;
   }
-  .proj-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: rgba(127,119,221,0.08);
-  }
+  .proj-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(127,119,221,0.08); }
 
   .gh-loading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 4rem;
-    color: var(--muted);
-    font-size: 13px;
-    font-family: var(--font-m);
+    display: flex; align-items: center; justify-content: center;
+    gap: 12px; padding: 4rem;
+    color: var(--muted); font-size: 13px; font-family: var(--font-m);
   }
   .spinner {
     width: 20px; height: 20px;
@@ -1031,26 +867,21 @@
     background: rgba(226,75,74,0.06);
     border: 0.5px solid rgba(226,75,74,0.2);
     border-radius: var(--radius-sm);
-    font-size: 13px;
-    color: #F09595;
+    font-size: 13px; color: #F09595;
     font-family: var(--font-m);
   }
 
-  /* ================================================
-     CONTACT
-  ================================================ */
-  .contact-hero {
-    text-align: center;
-    margin-bottom: 4rem;
-  }
+  /* CONTACT */
+  .contact-hero { text-align: center; margin-bottom: 4rem; }
   .contact-hero h2 {
     font-family: var(--font-h);
     font-size: clamp(2.5rem, 8vw, 6rem);
     font-weight: 600;
     color: #fff;
     letter-spacing: -0.04em;
-    line-height: 0.95;
+    line-height: 1.05;
     margin-bottom: 1.2rem;
+    padding-bottom: 0.15em;
   }
   .contact-hero h2 em {
     font-family: var(--font-s);
@@ -1085,19 +916,13 @@
     padding: 2rem;
   }
   .c-form-label {
-    font-family: var(--font-m);
-    font-size: 11px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    font-family: var(--font-m); font-size: 11px;
+    letter-spacing: 0.16em; text-transform: uppercase;
     color: var(--accent);
     margin-bottom: 1.2rem;
     display: block;
   }
-  .c-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
+  .c-form { display: flex; flex-direction: column; gap: 1rem; }
   .c-form input, .c-form textarea {
     background: rgba(255,255,255,0.03);
     border: 0.5px solid var(--border);
@@ -1123,15 +948,12 @@
     padding: 14px 28px;
     border-radius: 100px;
     font-family: var(--font-b);
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 14px; font-weight: 500;
     cursor: none;
     transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
     width: fit-content;
     box-shadow: 0 10px 30px -10px rgba(127,119,221,0.7);
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+    display: inline-flex; align-items: center; gap: 8px;
     margin-top: 0.4rem;
   }
   .c-submit:hover { background: #9189e5; transform: translateY(-2px); }
@@ -1148,15 +970,9 @@
     border-radius: var(--radius-sm);
   }
 
-  .c-right {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-  }
+  .c-right { display: flex; flex-direction: column; gap: 0.8rem; }
   .c-link {
-    display: flex;
-    align-items: center;
-    gap: 14px;
+    display: flex; align-items: center; gap: 14px;
     padding: 1.1rem 1.3rem;
     background: var(--card);
     border: 0.5px solid var(--border);
@@ -1164,88 +980,57 @@
     text-decoration: none;
     transition: border-color 0.2s, transform 0.2s, background 0.2s;
   }
-  .c-link:hover {
-    border-color: var(--accent);
-    transform: translateX(4px);
-    background: var(--card-2);
-  }
+  .c-link:hover { border-color: var(--accent); transform: translateX(4px); background: var(--card-2); }
   .c-link-icon {
-    width: 40px; height: 40px;
-    border-radius: 12px;
+    width: 40px; height: 40px; border-radius: 12px;
     background: linear-gradient(135deg, rgba(127,119,221,0.2), rgba(29,158,117,0.08));
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
     border: 0.5px solid rgba(127,119,221,0.25);
   }
   .c-link-icon svg { width: 16px; height: 16px; fill: var(--accent); }
   .c-link-name {
     font-family: var(--font-h);
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 14px; font-weight: 600;
     color: var(--text);
   }
   .c-link-sub {
     font-family: var(--font-m);
-    font-size: 11px;
-    color: var(--muted);
+    font-size: 11px; color: var(--muted);
     margin-top: 2px;
   }
   .c-link-arrow {
-    margin-left: auto;
-    color: var(--dim);
+    margin-left: auto; color: var(--dim);
     transition: transform 0.2s, color 0.2s;
   }
   .c-link:hover .c-link-arrow { color: var(--accent); transform: translate(3px, -3px); }
 
-  /* ================================================
-     FOOTER
-  ================================================ */
   footer {
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 1200px; margin: 0 auto;
     border-top: 0.5px solid var(--border);
     padding: 2rem 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-family: var(--font-m);
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.04em;
-    flex-wrap: wrap;
-    gap: 1rem;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: var(--font-m); font-size: 11px;
+    color: var(--muted); letter-spacing: 0.04em;
+    flex-wrap: wrap; gap: 1rem;
   }
-  footer .foot-right {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+  footer .foot-right { display: flex; align-items: center; gap: 10px; }
   footer .foot-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
+    width: 6px; height: 6px; border-radius: 50%;
     background: var(--accent-2);
     box-shadow: 0 0 8px var(--accent-2);
     animation: pulse 2s infinite;
   }
 
-  /* ================================================
-     ANIMATIONS
-  ================================================ */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
   }
   .reveal {
-    opacity: 0;
-    transform: translateY(30px);
+    opacity: 0; transform: translateY(30px);
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body>
@@ -1255,7 +1040,6 @@
 <div class="cursor-ring" id="cursor-ring"></div>
 <div class="cursor-dot" id="cursor-dot"></div>
 
-<!-- NAV -->
 <nav id="nav">
   <div class="nav-logo">MC<span style="color:var(--accent);">.</span></div>
   <div class="nav-links">
@@ -1278,14 +1062,14 @@
         <div class="hero-left">
           <div class="hero-badge">
             <span class="bdot"></span>
-            Data Scientist · Finance &amp; Risk
+            Apprenti Data · Cap actuariat &amp; quant
           </div>
           <h1>
             Maxence <span class="italic">Chan</span>
-            <span class="small">De la <strong style="color:var(--text);font-weight:500;">data</strong> à la <strong style="color:var(--accent);font-weight:500;">décision financière</strong> — j'aide les équipes à modéliser, mesurer et piloter le risque.</span>
+            <span class="small">De la <strong style="color:var(--text);font-weight:500;">data</strong> à la <strong style="color:var(--accent);font-weight:500;">décision financière</strong> — je modélise, mesure et pilote le risque.</span>
           </h1>
           <div class="hero-bio">
-            Actuellement en M1 Econométrie et Statistiques à <strong style="color:#fff;">l'ISFA </strong> (2&nbsp;ans), je rejoins <strong style="color:#fff;">SOGECAP</strong> en juin&nbsp;2026. Cap long terme : la <em style="font-family:var(--font-s);color:var(--accent);">finance quantitative</em>.
+            Actuellement en M1 Économétrie &amp; Statistiques à <strong style="color:#fff;">l'ISFA</strong>, après 2&nbsp;ans d'alternance chez <strong style="color:#fff;">Orange</strong>. Je rejoins <strong style="color:#fff;">SOGECAP</strong> en juin&nbsp;2026. Cap long terme&nbsp;: la <em style="font-family:var(--font-s);color:var(--accent);">finance quantitative</em>.
           </div>
           <div class="hero-cta">
             <button class="btn btn-p" onclick="show('projects', document.querySelector('[data-sec=projects]'))">
@@ -1324,23 +1108,21 @@
       </div>
     </div>
 
-    <!-- Marquee -->
     <div class="marquee">
       <div class="marquee-track">
+        <span class="marquee-item">Actuariat</span>
         <span class="marquee-item">Finance Quantitative</span>
-        <span class="marquee-item">Modélisation du Risque</span>
-        <span class="marquee-item">Machine Learning</span>
-        <span class="marquee-item">Data Engineering</span>
+        <span class="marquee-item">Économétrie</span>
+        <span class="marquee-item">Statistiques</span>
         <span class="marquee-item">Python · R · SQL</span>
+        <span class="marquee-item">Actuariat</span>
         <span class="marquee-item">Finance Quantitative</span>
-        <span class="marquee-item">Modélisation du Risque</span>
-        <span class="marquee-item">Machine Learning</span>
-        <span class="marquee-item">Data Engineering</span>
+        <span class="marquee-item">Économétrie</span>
+        <span class="marquee-item">Statistiques</span>
         <span class="marquee-item">Python · R · SQL</span>
       </div>
     </div>
 
-    <!-- Stats -->
     <div class="stats-bar">
       <div class="stat-item">
         <div class="stat-icon">📁</div>
@@ -1372,7 +1154,6 @@
       </div>
     </div>
 
-    <!-- Quick about section on home -->
     <section style="padding-top: 6rem;">
       <div class="sec-head reveal">
         <div>
@@ -1384,22 +1165,22 @@
 
       <div class="about-card reveal" style="background: linear-gradient(135deg, rgba(127,119,221,0.08), rgba(29,158,117,0.05));">
         <div class="kicker">Trajectoire</div>
-        <h3>Data Science appliquée <em>à la finance du risque.</em></h3>
-        <p>Je construis des modèles rigoureux, je les challenge avec les bons tests, et je traduis les résultats en décisions exploitables. Le reste (code propre, viz claire, doc lisible) vient avec.</p>
+        <h3 style="margin-bottom:0.9rem;">Data Science appliquée <em>à la finance du risque.</em></h3>
+        <p style="margin-top:0;">Je construis des modèles rigoureux, je les challenge avec les bons tests, et je traduis les résultats en décisions exploitables. Le reste (code propre, viz claire, doc lisible) vient avec.</p>
         <div class="path-flow">
-          <span class="path-step">BUT Science des données 2022-2025</span>
+          <span class="path-step">BUT</span>
           <span class="path-arrow">→</span>
-          <span class="path-step">Orange · Alternance 2023-2025</span>
+          <span class="path-step">Orange</span>
           <span class="path-arrow">→</span>
-          <span class="path-step">Master Econométrie et Statistiques (ISFA)</span>
+          <span class="path-step">M1 ISFA</span>
           <span class="path-arrow">→</span>
-          <span class="path-step">SOGECAP · Alternance 2026-2027</span>
+          <span class="path-step">SOGECAP</span>
           <span class="path-arrow">→</span>
-          <span class="path-step final">Finance Quantitative</span>
+          <span class="path-step final">Quant</span>
         </div>
       </div>
 
-      <div class="skills-grid reveal" style="margin-top: 1rem;">
+      <div class="skills-grid reveal" style="margin-top: 1.2rem;">
         <div class="skill-card">
           <div class="skill-icon">🐍</div>
           <h4>Data &amp; ML</h4>
@@ -1408,18 +1189,16 @@
             <span class="skill-tag">R</span>
             <span class="skill-tag">Pandas</span>
             <span class="skill-tag">Scikit-learn</span>
-            <span class="skill-tag">PyTorch</span>
           </div>
         </div>
         <div class="skill-card">
           <div class="skill-icon">📊</div>
           <h4>Finance &amp; Risk</h4>
           <div class="skill-tags">
-            <span class="skill-tag">VaR</span>
-            <span class="skill-tag">Monte Carlo</span>
-            <span class="skill-tag">Stress tests</span>
-            <span class="skill-tag">Solvabilité II</span>
+            <span class="skill-tag">Statistiques</span>
+            <span class="skill-tag">Économétrie</span>
             <span class="skill-tag">Time series</span>
+            <span class="skill-tag">Actuariat</span>
           </div>
         </div>
         <div class="skill-card">
@@ -1448,25 +1227,68 @@
         </a>
       </div>
 
+      <!-- EXPÉRIENCE -->
+      <h3 class="sec-subtitle reveal" style="margin-top:0;">Expérience <em>professionnelle</em></h3>
+
       <div class="about-grid reveal">
         <div class="about-card">
-          <div class="kicker">Expérience · 2023-2025 </div>
-          <h3>Orange SA <em>— Data Analyst &amp; Product Owner</em></h3>
+          <div class="card-head">
+            <img class="card-logo" src="https://raw.githubusercontent.com/MaxenceChan/MaxenceChan.github.io/main/logo_orange.png" alt="Orange">
+            <div class="card-head-text">
+              <div class="kicker">Expérience · 2023-2025</div>
+              <h3>Orange SA <em>— Data Analyst &amp; Product Owner</em></h3>
+            </div>
+          </div>
           <p><strong style="color:#fff;font-weight:500;">Power BI</strong> · Conception et automatisation de tableaux de bord interactifs pour <strong style="color:var(--accent);font-weight:500;">80&nbsp;entités</strong>, pilotage de la migration Excel&nbsp;→&nbsp;Power&nbsp;BI.<br><br>
           <strong style="color:#fff;font-weight:500;">Excel</strong> · Automatisation de la consolidation de données générant <strong style="color:var(--accent-2);font-weight:500;">14&nbsp;k€ d'économies annuelles</strong>.<br><br>
           <strong style="color:#fff;font-weight:500;">Jira &amp; Confluence</strong> · Pilotage fonctionnel d'un outil de suivi des prestations sur un budget de <strong style="color:var(--accent-3);font-weight:500;">200&nbsp;k€</strong>, élaboration du planning et indicateurs de tests.</p>
         </div>
         <div class="about-card">
-          <div class="kicker">Prochaine étape · Juin 2026</div>
-          <h3>SOGECAP <em>— Chargé d'Études Rentabilité &amp; Résultats</em></h3>
+          <div class="card-head">
+            <img class="card-logo" src="https://raw.githubusercontent.com/MaxenceChan/MaxenceChan.github.io/main/logo_sogecap.png" alt="SOGECAP">
+            <div class="card-head-text">
+              <div class="kicker">Prochaine étape · Juin 2026</div>
+              <h3>SOGECAP <em>— Chargé d'Études Rentabilité &amp; Résultats</em></h3>
+            </div>
+          </div>
           <p><strong style="color:#fff;font-weight:500;">Direction Financière</strong> · Alternance d'1 an au pôle <strong style="color:var(--accent);font-weight:500;">Pilotage Résultats &amp; Rentabilités</strong> de la compagnie d'assurance vie du Groupe Société Générale.<br><br>
           <strong style="color:#fff;font-weight:500;">Études</strong> · Analyses des portefeuilles SOGECAP et rédaction des <strong style="color:var(--accent-2);font-weight:500;">comités ALM</strong> en lien avec le Groupe SG.<br><br>
           <strong style="color:#fff;font-weight:500;">Comptabilité</strong> · Participation aux <strong style="color:var(--accent-3);font-weight:500;">arrêtés trimestriels</strong> — provision pour garantie plancher, états réglementaires.</p>
         </div>
       </div>
 
-      <div class="cv-box reveal">
-        <img src="https://raw.githubusercontent.com/MaxenceChan/MaxenceChan.github.io/main/CV_Maxence_Chan.jpg" alt="CV Maxence Chan">
+      <!-- FORMATION -->
+      <h3 class="sec-subtitle reveal">Formation <em>&amp; diplômes</em></h3>
+
+      <div class="about-grid reveal">
+        <div class="about-card">
+          <div class="card-head">
+            <img class="card-logo" src="https://raw.githubusercontent.com/MaxenceChan/MaxenceChan.github.io/main/logo_isfa.png" alt="ISFA">
+            <div class="card-head-text">
+              <div class="kicker">En cours · 2025-2027</div>
+              <h3>ISFA Lyon <em>— M1 Économétrie &amp; Statistiques</em></h3>
+            </div>
+          </div>
+          <p>Master centré sur la <strong style="color:#fff;font-weight:500;">modélisation statistique et économétrique</strong> appliquée à la finance, l'assurance et la gestion du risque.<br><br>
+          <strong style="color:var(--accent);font-weight:500;">Matières clés</strong> · Séries temporelles, modèles linéaires &amp; non-linéaires, processus stochastiques, actuariat vie &amp; non-vie, théorie du risque.</p>
+        </div>
+        <div class="about-card">
+          <div class="card-head">
+            <img class="card-logo" src="https://raw.githubusercontent.com/MaxenceChan/MaxenceChan.github.io/main/logo_sd.png" alt="BUT Science des Données">
+            <div class="card-head-text">
+              <div class="kicker">Diplôme · 2022-2025</div>
+              <h3>BUT Science des Données <em>— Bachelor</em></h3>
+            </div>
+          </div>
+          <p>Formation pluridisciplinaire en <strong style="color:#fff;font-weight:500;">data science appliquée</strong> : statistiques, programmation, bases de données, machine learning et visualisation.<br><br>
+          <strong style="color:var(--accent-2);font-weight:500;">Réalisé en alternance</strong> chez Orange SA — équilibre entre théorie et terrain métier.</p>
+        </div>
+      </div>
+
+      <!-- CV IMAGE -->
+      <h3 class="sec-subtitle reveal">Le CV <em>complet</em></h3>
+      <div class="cv-box reveal" style="margin-top:0;">
+        <img src="https://raw.githubusercontent.com/MaxenceChan/MaxenceChan.github.io/main/CV_Maxence_Chan.jpg" alt="CV Maxence Chan" loading="lazy">
       </div>
     </section>
   </div>
@@ -1561,7 +1383,7 @@
   <span>© 2026 Maxence Chan · Tous droits réservés</span>
   <div class="foot-right">
     <span class="foot-dot"></span>
-    <span>Ouvert aux opportunités · Finance Quantitative</span>
+    <span>Ouvert aux opportunités · Cap actuariat &amp; quant</span>
   </div>
 </footer>
 
@@ -1571,29 +1393,24 @@ const SECTIONS = ['home','about','projects','contact'];
 let currentSection = 'home';
 let ghLoaded = false;
 
-/* ============ NAV ============ */
 function show(id, el) {
   if (id === currentSection) return;
   const current = document.getElementById('sec-' + currentSection);
   const target = document.getElementById('sec-' + id);
   if (!target) return;
-
   if (current) current.classList.remove('active');
   setTimeout(() => {
     target.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setTimeout(initReveal, 100);
   }, 80);
-
   currentSection = id;
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   if (el) el.classList.add('active');
   else document.querySelector('[data-sec="'+id+'"]').classList.add('active');
-
   if (id === 'projects' && !ghLoaded) loadGitHub();
 }
 
-/* ============ SCROLL PROGRESS + NAV SHRINK ============ */
 const navEl = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   const scrollTop = window.scrollY;
@@ -1604,7 +1421,6 @@ window.addEventListener('scroll', () => {
   else navEl.classList.remove('scrolled');
 });
 
-/* ============ CURSOR ============ */
 const cRing = document.getElementById('cursor-ring');
 const cDot  = document.getElementById('cursor-dot');
 let mx = 0, my = 0, rx = 0, ry = 0;
@@ -1627,7 +1443,6 @@ document.addEventListener('mouseout', (e) => {
   }
 });
 
-/* ============ REVEAL ON SCROLL ============ */
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
@@ -1636,7 +1451,6 @@ const observer = new IntersectionObserver(entries => {
 function initReveal(){ document.querySelectorAll('.page.active .reveal:not(.visible)').forEach(el => observer.observe(el)); }
 initReveal();
 
-/* ============ COUNTER ============ */
 function animateCounter(el, target, suffix) {
   const duration = 1200;
   const start = performance.now();
@@ -1650,7 +1464,6 @@ function animateCounter(el, target, suffix) {
   requestAnimationFrame(update);
 }
 
-/* ============ GITHUB ============ */
 fetch('https://api.github.com/users/' + GITHUB_USERNAME)
   .then(r => r.ok ? r.json() : Promise.reject())
   .then(p => {
@@ -1684,21 +1497,18 @@ async function loadGitHub() {
   const profileArea = document.getElementById('gh-profile-area');
   const reposArea   = document.getElementById('gh-repos-area');
   const filterArea  = document.getElementById('filter-area');
-
   try {
     const pRes = await fetch('https://api.github.com/users/' + GITHUB_USERNAME);
     if (!pRes.ok) throw new Error('Utilisateur GitHub introuvable : ' + GITHUB_USERNAME);
     const p = await pRes.json();
-
     const statEl = document.getElementById('stat-repos');
     if (statEl) animateCounter(statEl, p.public_repos, '+');
-
     profileArea.innerHTML = `
       <div class="gh-profile">
         <img class="gh-avatar" src="${p.avatar_url}" alt="${p.login}">
         <div style="flex:1;min-width:200px;">
           <div class="gh-info-name">${p.name || p.login}</div>
-          <div class="gh-info-bio">${p.bio || 'Data Scientist · Finance & Risk'}</div>
+          <div class="gh-info-bio">${p.bio || 'Apprenti Data · Cap actuariat & quant'}</div>
           <div class="gh-meta">
             <span class="gh-meta-item">📦 ${p.public_repos} repos</span>
             <span class="gh-meta-item">👥 ${p.followers} followers</span>
@@ -1706,19 +1516,14 @@ async function loadGitHub() {
           </div>
         </div>
       </div>`;
-
     const rRes = await fetch('https://api.github.com/users/' + GITHUB_USERNAME + '/repos?sort=updated&per_page=30');
     let repos = await rRes.json();
     repos = repos.filter(r => !r.fork).sort((a,b) => b.stargazers_count - a.stargazers_count);
-
     if (repos.length === 0) { reposArea.innerHTML = '<div class="gh-error">Aucun repo public trouvé.</div>'; return; }
-
     const LANG_COLORS = { Python:'#3776AB', R:'#276DC3', JavaScript:'#F7DF1E', TypeScript:'#3178C6', HTML:'#E34F26', CSS:'#1572B6', SQL:'#CC2927', 'Jupyter Notebook':'#F37626', Shell:'#89E051', default:'#AFA9EC' };
-
     const langCount = {};
     repos.forEach(r => { if (r.language) langCount[r.language] = (langCount[r.language] || 0) + 1; });
     const langs = Object.keys(langCount).sort((a,b) => langCount[b] - langCount[a]);
-
     const cards = repos.map(r => {
       const langColor = LANG_COLORS[r.language] || LANG_COLORS.default;
       const initials = r.name.substring(0,3).toUpperCase();
@@ -1740,20 +1545,15 @@ async function loadGitHub() {
           </div>
         </div>`;
     }).join('');
-
     reposArea.innerHTML = '<div class="projects-grid">' + cards + '</div>';
-
     const filterBar = document.getElementById('filter-bar');
     filterBar.innerHTML = `<button class="filter-btn active" data-filter="Tous" onclick="filterProjects('Tous', this)">Tous</button>`;
     langs.forEach(lang => {
       filterBar.innerHTML += `<button class="filter-btn" data-filter="${lang}" onclick="filterProjects('${lang}', this)">${lang}</button>`;
     });
-
     filterArea.style.display = 'block';
     const countEl = document.getElementById('filter-count');
     if (countEl) countEl.textContent = repos.length + ' projets';
-
-    // Hover glow on cards
     document.querySelectorAll('.proj-card').forEach(card => {
       card.addEventListener('mousemove', e => {
         const r = card.getBoundingClientRect();
@@ -1761,13 +1561,11 @@ async function loadGitHub() {
         card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
       });
     });
-
   } catch(e) {
     reposArea.innerHTML = `<div class="gh-error">Erreur : ${e.message}</div>`;
   }
 }
 
-/* ============ CONTACT ============ */
 async function sendContact() {
   const name  = document.getElementById('c-name').value.trim();
   const email = document.getElementById('c-email').value.trim();
@@ -1800,7 +1598,6 @@ async function sendContact() {
   btn.disabled = false;
 }
 
-/* ============ SKILL CARD GLOW ============ */
 document.querySelectorAll('.skill-card').forEach(card => {
   card.addEventListener('mousemove', e => {
     const r = card.getBoundingClientRect();
@@ -1809,14 +1606,12 @@ document.querySelectorAll('.skill-card').forEach(card => {
   });
 });
 
-/* ============ PARTICLES ============ */
 (function(){
   const c = document.getElementById('particles');
   if (!c) return;
   const ctx = c.getContext('2d');
   let W, H, dots = [];
   const mouse = { x: null, y: null };
-
   function resize() {
     W = c.parentElement.offsetWidth;
     H = c.parentElement.offsetHeight;
@@ -1838,7 +1633,6 @@ document.querySelectorAll('.skill-card').forEach(card => {
   resize();
   window.addEventListener('resize', resize);
   window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
-
   function draw(){
     ctx.clearRect(0,0,W,H);
     for (let i=0; i<dots.length; i++){
